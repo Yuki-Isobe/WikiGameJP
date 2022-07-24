@@ -3,6 +3,11 @@ import UIKit
 class MainViewController: UIViewController {
     private let wikipediaRepository: WikipediaRepository
     
+    private var titles: [String] = []
+    
+    private let startLabel = UILabel()
+    private let goalLabel = UILabel()
+    
     init(
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl()
     ) {
@@ -17,9 +22,35 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         
-        let test = wikipediaRepository.getTitles()
+        titles = wikipediaRepository.getTitles()
+        
+        addSubviews()
+        configSubviews()
+        constraintSubviews()
+        styleSubviews()
+    }
+    
+    private func addSubviews() {
+        view.addSubview(startLabel)
+        view.addSubview(goalLabel)
+    }
+    
+    private func configSubviews() {
+        startLabel.accessibilityIdentifier = R.id.MainView_startTitle.rawValue
+        goalLabel.accessibilityIdentifier = R.id.MainView_goalTitle.rawValue
+        
+        startLabel.text = titles[0]
+        goalLabel.text = titles[1]
+    }
+    
+    private func constraintSubviews() {
+        startLabel.constrainTop(to: .Top, of: view)
+        goalLabel.constrainTop(to: .Bottom, of: startLabel)
+    }
+    
+    private func styleSubviews() {
     }
 }
 

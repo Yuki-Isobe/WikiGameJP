@@ -6,6 +6,8 @@ protocol WikipediaRepository {
 
 class WikipediaRepositoryImpl: WikipediaRepository {
     func getTitles() -> [String] {
-        [""]
+        [
+            "start", "goal"
+        ]
     }
 }
