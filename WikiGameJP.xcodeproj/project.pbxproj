@@ -10,9 +10,7 @@
 		B200B1A0288CF1D800BB7874 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B19F288CF1D800BB7874 /* AppDelegate.swift */; };
 		B200B1A2288CF1D800BB7874 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */; };
 		B200B1A4288CF1D800BB7874 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1A3288CF1D800BB7874 /* ViewController.swift */; };
-		B200B1A7288CF1D800BB7874 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B200B1A5288CF1D800BB7874 /* Main.storyboard */; };
 		B200B1A9288CF1D900BB7874 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B200B1A8288CF1D900BB7874 /* Assets.xcassets */; };
-		B200B1AC288CF1D900BB7874 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B200B1AA288CF1D900BB7874 /* LaunchScreen.storyboard */; };
 		B200B1B7288CF1D900BB7874 /* WikiGameJPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1B6288CF1D900BB7874 /* WikiGameJPTests.swift */; };
 		B200B1C1288CF1D900BB7874 /* WikiGameJPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1C0288CF1D900BB7874 /* WikiGameJPUITests.swift */; };
 		B200B1C3288CF1D900BB7874 /* WikiGameJPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1C2288CF1D900BB7874 /* WikiGameJPUITestsLaunchTests.swift */; };
@@ -40,9 +38,7 @@
 		B200B19F288CF1D800BB7874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B200B1A3288CF1D800BB7874 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B200B1A6288CF1D800BB7874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B200B1A8288CF1D900BB7874 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B200B1AB288CF1D900BB7874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B200B1AD288CF1D900BB7874 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B200B1B2288CF1D900BB7874 /* WikiGameJPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiGameJPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B200B1B6288CF1D900BB7874 /* WikiGameJPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiGameJPTests.swift; sourceTree = "<group>"; };
@@ -102,9 +98,7 @@
 				B200B19F288CF1D800BB7874 /* AppDelegate.swift */,
 				B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */,
 				B200B1A3288CF1D800BB7874 /* ViewController.swift */,
-				B200B1A5288CF1D800BB7874 /* Main.storyboard */,
 				B200B1A8288CF1D900BB7874 /* Assets.xcassets */,
-				B200B1AA288CF1D900BB7874 /* LaunchScreen.storyboard */,
 				B200B1AD288CF1D900BB7874 /* Info.plist */,
 			);
 			path = WikiGameJP;
@@ -231,9 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B200B1AC288CF1D900BB7874 /* LaunchScreen.storyboard in Resources */,
 				B200B1A9288CF1D900BB7874 /* Assets.xcassets in Resources */,
-				B200B1A7288CF1D800BB7874 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,25 +287,6 @@
 			targetProxy = B200B1BD288CF1D900BB7874 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B200B1A5288CF1D800BB7874 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B200B1A6288CF1D800BB7874 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B200B1AA288CF1D900BB7874 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B200B1AB288CF1D900BB7874 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B200B1C4288CF1D900BB7874 /* Debug */ = {
@@ -442,7 +415,6 @@
 				INFOPLIST_FILE = WikiGameJP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +442,6 @@
 				INFOPLIST_FILE = WikiGameJP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
