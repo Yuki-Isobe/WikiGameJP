@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        titles = wikipediaRepository.getTitles()
+//        titles = wikipediaRepository.getTitles()
         
         addSubviews()
         configSubviews()
@@ -41,12 +41,12 @@ class MainViewController: UIViewController {
         startLabel.accessibilityIdentifier = R.id.MainView_startTitle.rawValue
         goalLabel.accessibilityIdentifier = R.id.MainView_goalTitle.rawValue
         
-        startLabel.text = titles[0]
-        goalLabel.text = titles[1]
+//        startLabel.text = titles[0]
+//        goalLabel.text = titles[1]
     }
     
     private func constraintSubviews() {
-        startLabel.constrainTop(to: .Top, of: view)
+        startLabel.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
         goalLabel.constrainTop(to: .Bottom, of: startLabel)
     }
     

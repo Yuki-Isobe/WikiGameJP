@@ -20,6 +20,17 @@
 		B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D4288D6AC800979CBB /* UIViewExtensions.swift */; };
 		B21675D8288D6C6700979CBB /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D7288D6C6700979CBB /* R.swift */; };
 		B21675DB288D6EF100979CBB /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675DA288D6EF100979CBB /* Constraints.swift */; };
+		B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */; };
+		B2C268F3288E968300677F64 /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F2288E968300677F64 /* Http.swift */; };
+		B2C268F5288E96A700677F64 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F4288E96A700677F64 /* AppError.swift */; };
+		B2C268F7288E96BD00677F64 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F6288E96BD00677F64 /* URLSessionDataTaskProtocol.swift */; };
+		B2C268F9288E96E400677F64 /* DefaultHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F8288E96E400677F64 /* DefaultHttp.swift */; };
+		B2C268FC288E973600677F64 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = B2C268FB288E973600677F64 /* BrightFutures */; };
+		B2C268FF288E974800677F64 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = B2C268FE288E974800677F64 /* BrightFutures */; };
+		B2C26901288E977500677F64 /* UrlSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C26900288E977500677F64 /* UrlSessionProtocol.swift */; };
+		B2C26903288E9A8F00677F64 /* WikipediaUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C26902288E9A8F00677F64 /* WikipediaUrlGenerator.swift */; };
+		B2C26906288E9D8900677F64 /* WikipediaTitleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */; };
+		B2C26909288E9F4300677F64 /* WikipediaTitleResponseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */; };
 		ED66E61D0362BACC65549AA7 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223BB9E2834B8647436AF5D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E1CBE5A7EDFF23A412A4F86 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 		B200B19C288CF1D800BB7874 /* WikiGameJP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiGameJP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B200B19F288CF1D800BB7874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +67,16 @@
 		B21675D4288D6AC800979CBB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B21675D7288D6C6700979CBB /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		B21675DA288D6EF100979CBB /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		F223BB9E2834B8647436AF5D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRepositoryTests.swift; sourceTree = "<group>"; };
+		B2C268F2288E968300677F64 /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
+		B2C268F4288E96A700677F64 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		B2C268F6288E96BD00677F64 /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		B2C268F8288E96E400677F64 /* DefaultHttp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHttp.swift; sourceTree = "<group>"; };
+		B2C26900288E977500677F64 /* UrlSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionProtocol.swift; sourceTree = "<group>"; };
+		B2C26902288E9A8F00677F64 /* WikipediaUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaUrlGenerator.swift; sourceTree = "<group>"; };
+		B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponse.swift; sourceTree = "<group>"; };
+		B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponseFactory.swift; sourceTree = "<group>"; };
+		F223BB9E2834B8647436AF5D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C268FC288E973600677F64 /* BrightFutures in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21675D2288D064B00979CBB /* Mockingbird in Frameworks */,
+				B2C268FF288E974800677F64 /* BrightFutures in Frameworks */,
 				B21675CD288CFF8100979CBB /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +124,7 @@
 				B200B1BF288CF1D900BB7874 /* WikiGameJPUITests */,
 				B200B19D288CF1D800BB7874 /* Products */,
 				7A51BD1CBBB9FC688C322850 /* Generated Mocks */,
+				B2C268FD288E974800677F64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +141,7 @@
 		B200B19E288CF1D800BB7874 /* WikiGameJP */ = {
 			isa = PBXGroup;
 			children = (
+				B2C26904288E9D4C00677F64 /* Model */,
 				B21675D6288D6C5200979CBB /* Common */,
 				B200B19F288CF1D800BB7874 /* AppDelegate.swift */,
 				B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */,
@@ -126,6 +149,7 @@
 				B200B1A8288CF1D900BB7874 /* Assets.xcassets */,
 				B200B1AD288CF1D900BB7874 /* Info.plist */,
 				B21675CE288D025500979CBB /* WikipediaRepository.swift */,
+				B2C26902288E9A8F00677F64 /* WikipediaUrlGenerator.swift */,
 			);
 			path = WikiGameJP;
 			sourceTree = "<group>";
@@ -133,8 +157,10 @@
 		B200B1B5288CF1D900BB7874 /* WikiGameJPTests */ = {
 			isa = PBXGroup;
 			children = (
+				B2C26907288E9F2A00677F64 /* Factory */,
 				B21675D3288D6AA000979CBB /* TestExtensions */,
 				B200B1B6288CF1D900BB7874 /* MainViewControllerTests.swift */,
+				B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */,
 			);
 			path = WikiGameJPTests;
 			sourceTree = "<group>";
@@ -159,6 +185,7 @@
 		B21675D6288D6C5200979CBB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B2C268F1288E967000677F64 /* Http */,
 				B21675D9288D6EE500979CBB /* View */,
 				B21675D7288D6C6700979CBB /* R.swift */,
 			);
@@ -171,6 +198,41 @@
 				B21675DA288D6EF100979CBB /* Constraints.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B2C268F1288E967000677F64 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				B2C268F2288E968300677F64 /* Http.swift */,
+				B2C268F4288E96A700677F64 /* AppError.swift */,
+				B2C268F6288E96BD00677F64 /* URLSessionDataTaskProtocol.swift */,
+				B2C268F8288E96E400677F64 /* DefaultHttp.swift */,
+				B2C26900288E977500677F64 /* UrlSessionProtocol.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		B2C268FD288E974800677F64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2C26904288E9D4C00677F64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2C26907288E9F2A00677F64 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +251,9 @@
 			dependencies = (
 			);
 			name = WikiGameJP;
+			packageProductDependencies = (
+				B2C268FB288E973600677F64 /* BrightFutures */,
+			);
 			productName = WikiGameJP;
 			productReference = B200B19C288CF1D800BB7874 /* WikiGameJP.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +276,7 @@
 			packageProductDependencies = (
 				B21675CC288CFF8100979CBB /* Nimble */,
 				B21675D1288D064B00979CBB /* Mockingbird */,
+				B2C268FE288E974800677F64 /* BrightFutures */,
 			);
 			productName = WikiGameJPTests;
 			productReference = B200B1B2288CF1D900BB7874 /* WikiGameJPTests.xctest */;
@@ -269,6 +335,7 @@
 			packageReferences = (
 				B21675CB288CFF8100979CBB /* XCRemoteSwiftPackageReference "Nimble" */,
 				B21675D0288D064B00979CBB /* XCRemoteSwiftPackageReference "mockingbird" */,
+				B2C268FA288E973600677F64 /* XCRemoteSwiftPackageReference "BrightFutures" */,
 			);
 			productRefGroup = B200B19D288CF1D800BB7874 /* Products */;
 			projectDirPath = "";
@@ -332,10 +399,17 @@
 			files = (
 				B200B1A4288CF1D800BB7874 /* MainViewController.swift in Sources */,
 				B200B1A0288CF1D800BB7874 /* AppDelegate.swift in Sources */,
+				B2C26901288E977500677F64 /* UrlSessionProtocol.swift in Sources */,
+				B2C26903288E9A8F00677F64 /* WikipediaUrlGenerator.swift in Sources */,
+				B2C268F7288E96BD00677F64 /* URLSessionDataTaskProtocol.swift in Sources */,
 				B200B1A2288CF1D800BB7874 /* SceneDelegate.swift in Sources */,
 				B21675D8288D6C6700979CBB /* R.swift in Sources */,
+				B2C268F5288E96A700677F64 /* AppError.swift in Sources */,
 				B21675DB288D6EF100979CBB /* Constraints.swift in Sources */,
 				B21675CF288D025500979CBB /* WikipediaRepository.swift in Sources */,
+				B2C268F3288E968300677F64 /* Http.swift in Sources */,
+				B2C26906288E9D8900677F64 /* WikipediaTitleResponse.swift in Sources */,
+				B2C268F9288E96E400677F64 /* DefaultHttp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,8 +417,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C26909288E9F4300677F64 /* WikipediaTitleResponseFactory.swift in Sources */,
 				B200B1B7288CF1D900BB7874 /* MainViewControllerTests.swift in Sources */,
 				B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */,
+				B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */,
 				ED66E61D0362BACC65549AA7 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +752,14 @@
 				kind = branch;
 			};
 		};
+		B2C268FA288E973600677F64 /* XCRemoteSwiftPackageReference "BrightFutures" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Thomvis/BrightFutures";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -688,6 +772,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B21675D0288D064B00979CBB /* XCRemoteSwiftPackageReference "mockingbird" */;
 			productName = Mockingbird;
+		};
+		B2C268FB288E973600677F64 /* BrightFutures */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2C268FA288E973600677F64 /* XCRemoteSwiftPackageReference "BrightFutures" */;
+			productName = BrightFutures;
+		};
+		B2C268FE288E974800677F64 /* BrightFutures */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2C268FA288E973600677F64 /* XCRemoteSwiftPackageReference "BrightFutures" */;
+			productName = BrightFutures;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

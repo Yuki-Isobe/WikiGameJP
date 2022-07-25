@@ -1,13 +1,43 @@
+import BrightFutures
 import Foundation
 
 protocol WikipediaRepository {
-    func getTitles() -> [String]
+    func getTitles() -> Future<WikipediaTitleResponse, AppError>
 }
 
 class WikipediaRepositoryImpl: WikipediaRepository {
-    func getTitles() -> [String] {
-        [
-            "start", "goal"
-        ]
+    private let http: Http
+    private let urlGenerator: WikipediaUrlGenerator
+    
+    init(
+        http: Http = DefaultHttp(),
+        urlGenerator: WikipediaUrlGenerator = WikipediaUrlGeneratorImpl()
+    ) {
+        self.http = http
+        self.urlGenerator = urlGenerator
+    }
+    
+    func getTitles() -> Future<WikipediaTitleResponse, AppError> {
+        let result = http.get(path: urlGenerator.generateUrl()).flatMap { response in
+            self.parse(data: response, WikipediaTitleResponse.self)
+        }
+        
+        return result
+    }
+    
+    private func parse<T: Decodable>(data: Any, _ type: T.Type) -> Result<T, AppError> {
+        guard let validData = data as? Data else {
+            return Result.failure(.ParseFailed)
+        }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+            let response = try decoder.decode(T.self, from: validData)
+            return .success(response)
+        } catch _ {
+            return .failure(.ParseFailed)
+        }
+        return Result.failure(.ParseFailed)
     }
 }

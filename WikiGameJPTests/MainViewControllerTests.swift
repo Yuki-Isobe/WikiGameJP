@@ -10,7 +10,7 @@ class MainViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockWikipediaRepository = mock(WikipediaRepository.self)
-        given(mockWikipediaRepository.getTitles()).willReturn(["", ""])
+//        given(mockWikipediaRepository.getTitles()).willReturn(["", ""])
 
         subject = MainViewController(
             wikipediaRepository: mockWikipediaRepository
@@ -23,7 +23,7 @@ class MainViewControllerTests: XCTestCase {
             "fake-title-2"
         ]
         
-        given(mockWikipediaRepository.getTitles()).willReturn(title)
+//        given(mockWikipediaRepository.getTitles()).willReturn(title)
         
         _ = subject.view
         
