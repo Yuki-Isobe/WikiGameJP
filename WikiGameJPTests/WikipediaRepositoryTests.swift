@@ -16,7 +16,7 @@ class WikipediaRepositoryTests: XCTestCase {
         mockHttp = mock(Http.self)
         mockWikipediaUrlGenerator = mock(WikipediaUrlGenerator.self)
         
-        given(mockWikipediaUrlGenerator.generateUrl()).willReturn("http://fake-url/")
+        given(mockWikipediaUrlGenerator.generateGetTitleUrl()).willReturn("http://fake-url/")
 
         subject = WikipediaRepositoryImpl(
             http: mockHttp,

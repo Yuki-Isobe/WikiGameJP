@@ -18,7 +18,7 @@ class WikipediaRepositoryImpl: WikipediaRepository {
     }
     
     func getTitles() -> Future<WikipediaTitleResponse, AppError> {
-        let result = http.get(path: urlGenerator.generateUrl()).flatMap { response in
+        let result = http.get(path: urlGenerator.generateGetTitleUrl()).flatMap { response in
             self.parse(data: response, WikipediaTitleResponse.self)
         }
         

@@ -1,6 +1,8 @@
+import BrightFutures
 import UIKit
 
 class MainViewController: UIViewController {
+    private let futureExecuteContext: ExecutionContext
     private let wikipediaRepository: WikipediaRepository
     
     private var titles: [String] = []
@@ -9,9 +11,11 @@ class MainViewController: UIViewController {
     private let goalLabel = UILabel()
     
     init(
-        wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl()
+        wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
+        futureExecutionContext: @escaping ExecutionContext = defaultContext()
     ) {
         self.wikipediaRepository = wikipediaRepository
+        self.futureExecuteContext = futureExecutionContext
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,12 +28,28 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-//        titles = wikipediaRepository.getTitles()
+        getTitle()
         
         addSubviews()
         configSubviews()
         constraintSubviews()
         styleSubviews()
+    }
+    
+    private func getTitle() {
+        wikipediaRepository.getTitles()
+            .onSuccess(futureExecuteContext) { [weak self] result in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                let resultTitles = result.query.random
+                weakSelf.startLabel.text = resultTitles[0].title
+                weakSelf.goalLabel.text = resultTitles[1].title
+            }
+            .onFailure(callback: { error in
+                print("\(error.localizedDescription)")
+            })
     }
     
     private func addSubviews() {
