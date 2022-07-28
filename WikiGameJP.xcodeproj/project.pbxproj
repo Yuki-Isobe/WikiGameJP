@@ -21,6 +21,7 @@
 		B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D4288D6AC800979CBB /* UIViewExtensions.swift */; };
 		B21675D8288D6C6700979CBB /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D7288D6C6700979CBB /* R.swift */; };
 		B21675DB288D6EF100979CBB /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675DA288D6EF100979CBB /* Constraints.swift */; };
+		B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27FFB082892900000A1180E /* UIButtonExtensions.swift */; };
 		B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */; };
 		B2C268F3288E968300677F64 /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F2288E968300677F64 /* Http.swift */; };
 		B2C268F5288E96A700677F64 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F4288E96A700677F64 /* AppError.swift */; };
@@ -53,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F5F21454740EC1C8B3A6E05 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		3F5F21454740EC1C8B3A6E05 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 		B200B19C288CF1D800BB7874 /* WikiGameJP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiGameJP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B200B19F288CF1D800BB7874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +70,7 @@
 		B21675D4288D6AC800979CBB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B21675D7288D6C6700979CBB /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		B21675DA288D6EF100979CBB /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		B27FFB082892900000A1180E /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRepositoryTests.swift; sourceTree = "<group>"; };
 		B2C268F2288E968300677F64 /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		B2C268F4288E96A700677F64 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -79,7 +81,6 @@
 		B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponse.swift; sourceTree = "<group>"; };
 		B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponseFactory.swift; sourceTree = "<group>"; };
 		B2EA5328288FEB4E00EF20B3 /* WikipediaUrlGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaUrlGeneratorTests.swift; sourceTree = "<group>"; };
-		F223BB9E2834B8647436AF5D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				B21675D4288D6AC800979CBB /* UIViewExtensions.swift */,
+				B27FFB082892900000A1180E /* UIButtonExtensions.swift */,
 			);
 			path = TestExtensions;
 			sourceTree = "<group>";
@@ -427,6 +429,7 @@
 				B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */,
 				B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */,
 				416DE48A389F833EB65254B0 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */,
+				B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

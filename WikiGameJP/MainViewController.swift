@@ -10,6 +10,8 @@ class MainViewController: UIViewController {
     private let startLabel = UILabel()
     private let goalLabel = UILabel()
     
+    private let titleSwapButton = UIButton()
+    
     init(
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
         futureExecutionContext: @escaping ExecutionContext = defaultContext()
@@ -55,22 +57,37 @@ class MainViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(startLabel)
         view.addSubview(goalLabel)
+        
+        view.addSubview(titleSwapButton)
     }
     
     private func configSubviews() {
         startLabel.accessibilityIdentifier = R.id.MainView_startTitle.rawValue
         goalLabel.accessibilityIdentifier = R.id.MainView_goalTitle.rawValue
         
-//        startLabel.text = titles[0]
-//        goalLabel.text = titles[1]
+        titleSwapButton.accessibilityIdentifier = R.id.MainView_titleSwapButton.rawValue
+        titleSwapButton.backgroundColor = .gray
+        titleSwapButton.addTarget(self, action: #selector(tappedTitleSwapButton), for: .touchUpInside)
     }
     
     private func constraintSubviews() {
         startLabel.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        startLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        
         goalLabel.constrainTop(to: .Bottom, of: startLabel)
+        goalLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        
+        titleSwapButton.constrainTop(to: .Bottom, of: goalLabel)
+        titleSwapButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
+    }
+    
+    @objc func tappedTitleSwapButton() {
+        let tmpText = startLabel.text
+        startLabel.text = goalLabel.text
+        goalLabel.text = tmpText
     }
 }
 

@@ -3,5 +3,6 @@ enum R {
         // MainViewController
         case MainView_startTitle
         case MainView_goalTitle
+        case MainView_titleSwapButton
     }
 }
