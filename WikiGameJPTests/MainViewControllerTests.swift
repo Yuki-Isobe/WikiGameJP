@@ -92,4 +92,16 @@ class MainViewControllerTests: XCTestCase {
         expect(newStartLabel?.text).toEventually(equal("fake-title-2"))
         expect(newGoalLabel?.text).toEventually(equal("fake-title-1"))
     }
+    
+    func test_tapTitleReloadButton() {
+        _ = subject.view
+        verify(mockWikipediaRepository.getTitles()).wasCalled(exactly(1))
+        
+        let titleReloadButton = subject.view.findButton(withId: R.id.MainView_titleReloadButton.rawValue)
+        
+        titleReloadButton?.tap()
+        subject.view.layoutIfNeeded()
+        
+        verify(mockWikipediaRepository.getTitles()).wasCalled(exactly(2))
+    }
 }

@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     private let goalLabel = UILabel()
     
     private let titleSwapButton = UIButton()
+    private let titleReloadButton = UIButton()
     
     init(
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
@@ -59,6 +60,7 @@ class MainViewController: UIViewController {
         view.addSubview(goalLabel)
         
         view.addSubview(titleSwapButton)
+        view.addSubview(titleReloadButton)
     }
     
     private func configSubviews() {
@@ -68,6 +70,10 @@ class MainViewController: UIViewController {
         titleSwapButton.accessibilityIdentifier = R.id.MainView_titleSwapButton.rawValue
         titleSwapButton.backgroundColor = .gray
         titleSwapButton.addTarget(self, action: #selector(tappedTitleSwapButton), for: .touchUpInside)
+        
+        titleReloadButton.accessibilityIdentifier = R.id.MainView_titleReloadButton.rawValue
+        titleReloadButton.backgroundColor = .cyan
+        titleReloadButton.addTarget(self, action: #selector(tappedTitleReloadButton), for: .touchUpInside)
     }
     
     private func constraintSubviews() {
@@ -79,6 +85,9 @@ class MainViewController: UIViewController {
         
         titleSwapButton.constrainTop(to: .Bottom, of: goalLabel)
         titleSwapButton.constrainXCenter(to: .CenterXAnchor, of: view)
+        
+        titleReloadButton.constrainTop(to: .Bottom, of: titleSwapButton)
+        titleReloadButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
@@ -88,6 +97,10 @@ class MainViewController: UIViewController {
         let tmpText = startLabel.text
         startLabel.text = goalLabel.text
         goalLabel.text = tmpText
+    }
+    
+    @objc func tappedTitleReloadButton() {
+        getTitle()
     }
 }
 
