@@ -3,6 +3,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     private let futureExecuteContext: ExecutionContext
+    
+    private let router: Router
     private let wikipediaRepository: WikipediaRepository
     
     private var titles: [String] = []
@@ -13,10 +15,14 @@ class MainViewController: UIViewController {
     private let titleSwapButton = UIButton()
     private let titleReloadButton = UIButton()
     
+    private let gameStartButton = UIButton()
+    
     init(
+        router: Router,
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
         futureExecutionContext: @escaping ExecutionContext = defaultContext()
     ) {
+        self.router = router
         self.wikipediaRepository = wikipediaRepository
         self.futureExecuteContext = futureExecutionContext
         
@@ -61,6 +67,8 @@ class MainViewController: UIViewController {
         
         view.addSubview(titleSwapButton)
         view.addSubview(titleReloadButton)
+        
+        view.addSubview(gameStartButton)
     }
     
     private func configSubviews() {
@@ -74,6 +82,10 @@ class MainViewController: UIViewController {
         titleReloadButton.accessibilityIdentifier = R.id.MainView_titleReloadButton.rawValue
         titleReloadButton.backgroundColor = .cyan
         titleReloadButton.addTarget(self, action: #selector(tappedTitleReloadButton), for: .touchUpInside)
+        
+        gameStartButton.accessibilityIdentifier = R.id.MainView_gameStartButton.rawValue
+        gameStartButton.backgroundColor = .red
+        gameStartButton.addTarget(self, action: #selector(tappedGameStartButton), for: .touchUpInside)
     }
     
     private func constraintSubviews() {
@@ -88,6 +100,9 @@ class MainViewController: UIViewController {
         
         titleReloadButton.constrainTop(to: .Bottom, of: titleSwapButton)
         titleReloadButton.constrainXCenter(to: .CenterXAnchor, of: view)
+        
+        gameStartButton.constrainTop(to: .Bottom, of: titleReloadButton)
+        gameStartButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
@@ -101,6 +116,16 @@ class MainViewController: UIViewController {
     
     @objc func tappedTitleReloadButton() {
         getTitle()
+    }
+    
+    @objc func tappedGameStartButton() {
+//        let vc = WikipediaGameViewController(router: router)
+//        router.present(viewController: vc, fromViewController: self, animated: true, completion: nil)
+        
+        if let nc = navigationController {
+            print("pushed")
+            router.pushViewController(WikipediaGameViewController(router: router), on: nc)
+        }
     }
 }
 

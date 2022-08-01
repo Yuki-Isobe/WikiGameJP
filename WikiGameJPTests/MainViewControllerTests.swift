@@ -6,18 +6,26 @@ import Mockingbird
 
 class MainViewControllerTests: XCTestCase {
     var subject: MainViewController!
+    
+    private var routerSpy: NavigationRouterSpy!
     var mockWikipediaRepository: WikipediaRepositoryMock!
     
     override func setUp() {
         super.setUp()
+        
+        routerSpy = NavigationRouterSpy()
         mockWikipediaRepository = mock(WikipediaRepository.self)
         
         given(mockWikipediaRepository.getTitles()).willReturn(
             Future(value: WikipediaTitleResponseFactory.create(
                 query: WikipediaQueryFactory.create(
                     random: [
-                        WikipediaTitleFactory.create(),
-                        WikipediaTitleFactory.create()
+                        WikipediaTitleFactory.create(
+                            title: "fake-title-1"
+                        ),
+                        WikipediaTitleFactory.create(
+                            title: "fake-title-2"
+                        )
                     ]
                 )
             )
@@ -25,28 +33,17 @@ class MainViewControllerTests: XCTestCase {
         )
 
         subject = MainViewController(
+            router: routerSpy,
             wikipediaRepository: mockWikipediaRepository
         )
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [
+            subject
+        ]
     }
     
     func test_viewDidLoad_getWikipediaTitles() {
-        let response = WikipediaTitleResponseFactory.create(
-            query: WikipediaQueryFactory.create(
-                random: [
-                    WikipediaTitleFactory.create(
-                        title: "fake-title-1"
-                    ),
-                    WikipediaTitleFactory.create(
-                        title: "fake-title-2"
-                    )
-                ]
-            )
-        )
-        
-        given(mockWikipediaRepository.getTitles()).willReturn(
-            Future(value: response)
-        )
-        
         _ = subject.view
         verify(mockWikipediaRepository.getTitles()).wasCalled()
         subject.view.layoutIfNeeded()
@@ -58,23 +55,6 @@ class MainViewControllerTests: XCTestCase {
     }
     
     func test_tapTitleSwapButton() {
-        let response = WikipediaTitleResponseFactory.create(
-            query: WikipediaQueryFactory.create(
-                random: [
-                    WikipediaTitleFactory.create(
-                        title: "fake-title-1"
-                    ),
-                    WikipediaTitleFactory.create(
-                        title: "fake-title-2"
-                    )
-                ]
-            )
-        )
-        
-        given(mockWikipediaRepository.getTitles()).willReturn(
-            Future(value: response)
-        )
-        
         _ = subject.view
         subject.view.layoutIfNeeded()
         
@@ -103,5 +83,34 @@ class MainViewControllerTests: XCTestCase {
         subject.view.layoutIfNeeded()
         
         verify(mockWikipediaRepository.getTitles()).wasCalled(exactly(2))
+    }
+    
+    func test_tapGameStartButton() {
+        let startTitle = "fake-start-title"
+        let wikipediaTitleResponce = WikipediaTitleResponseFactory.create(
+            query: WikipediaQueryFactory.create(
+                random: [
+                    WikipediaTitleFactory.create(
+                        title: startTitle
+                    ),
+                    WikipediaTitleFactory.create(
+                        title: "fake-title-2"
+                    )
+                ]
+            )
+        )
+        
+        given(mockWikipediaRepository.getTitles()).willReturn(
+            Future(value: wikipediaTitleResponce)
+        )
+        
+        _ = subject.view
+        
+        let gameStartButton = subject.view.findButton(withId: R.id.MainView_gameStartButton.rawValue)
+        
+        gameStartButton?.tap()
+        
+        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(WikipediaGameViewController.self))
+        
     }
 }
