@@ -73,14 +73,17 @@ class MainViewController: UIViewController {
     
     private func configSubviews() {
         startLabel.accessibilityIdentifier = R.id.MainView_startTitle.rawValue
+        startLabel.textAlignment = .center
+        
         goalLabel.accessibilityIdentifier = R.id.MainView_goalTitle.rawValue
+        goalLabel.textAlignment = .center
         
         titleSwapButton.accessibilityIdentifier = R.id.MainView_titleSwapButton.rawValue
-        titleSwapButton.backgroundColor = .gray
+        titleSwapButton.setImage(UIImage(systemName: "arrow.up.arrow.down"), for: .normal)
         titleSwapButton.addTarget(self, action: #selector(tappedTitleSwapButton), for: .touchUpInside)
         
         titleReloadButton.accessibilityIdentifier = R.id.MainView_titleReloadButton.rawValue
-        titleReloadButton.backgroundColor = .cyan
+        titleReloadButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
         titleReloadButton.addTarget(self, action: #selector(tappedTitleReloadButton), for: .touchUpInside)
         
         gameStartButton.accessibilityIdentifier = R.id.MainView_gameStartButton.rawValue
@@ -90,22 +93,31 @@ class MainViewController: UIViewController {
     
     private func constraintSubviews() {
         startLabel.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
-        startLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        startLabel.constrainLeft(to: .Left, of: view)
+        startLabel.constrainRight(to: .Right, of: view)
         
-        goalLabel.constrainTop(to: .Bottom, of: startLabel)
-        goalLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        titleSwapButton.constrainTop(to: .Bottom, of: startLabel)
+        titleSwapButton.constrainBottom(to: .Top, of: goalLabel)
+        titleSwapButton.constrainLeft(to: .Left, of: view)
+
+        titleReloadButton.constrainTop(to: .Bottom, of: startLabel)
+        titleReloadButton.constrainBottom(to: .Top, of: goalLabel)
+        titleReloadButton.constrainRight(to: .Right, of: view)
         
-        titleSwapButton.constrainTop(to: .Bottom, of: goalLabel)
-        titleSwapButton.constrainXCenter(to: .CenterXAnchor, of: view)
+        goalLabel.constrainTop(to: .Bottom, of: titleSwapButton)
+        goalLabel.constrainLeft(to: .Left, of: view)
+        goalLabel.constrainRight(to: .Right, of: view)
         
-        titleReloadButton.constrainTop(to: .Bottom, of: titleSwapButton)
-        titleReloadButton.constrainXCenter(to: .CenterXAnchor, of: view)
-        
-        gameStartButton.constrainTop(to: .Bottom, of: titleReloadButton)
+        gameStartButton.constrainTop(to: .Bottom, of: goalLabel)
         gameStartButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
+        startLabel.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
+        startLabel.numberOfLines = 0
+        
+        goalLabel.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
+        goalLabel.numberOfLines = 0
     }
     
     @objc func tappedTitleSwapButton() {
@@ -119,11 +131,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func tappedGameStartButton() {
-//        let vc = WikipediaGameViewController(router: router)
-//        router.present(viewController: vc, fromViewController: self, animated: true, completion: nil)
-        
         if let nc = navigationController {
-            print("pushed")
             router.pushViewController(WikipediaGameViewController(router: router), on: nc)
         }
     }
