@@ -111,6 +111,5 @@ class MainViewControllerTests: XCTestCase {
         gameStartButton?.tap()
         
         expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(WikipediaGameViewController.self))
-        
     }
 }

@@ -137,8 +137,17 @@ class MainViewController: UIViewController {
     }
     
     @objc func tappedGameStartButton() {
-        if let nc = navigationController {
-            router.pushViewController(WikipediaGameViewController(router: router), on: nc)
+        if let nc = navigationController,
+           let titleStart = startLabel.text,
+           let titleGoal = goalLabel.text
+        {
+            router.pushViewController(
+                WikipediaGameViewController(
+                    router: router,
+                    titleStart: titleStart,
+                    titleGoal: titleGoal
+                )
+                , on: nc)
         }
     }
 }

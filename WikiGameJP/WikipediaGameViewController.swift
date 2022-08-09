@@ -5,10 +5,17 @@ import BrightFutures
 class WikipediaGameViewController: UIViewController {
     private let router: Router
     
+    private let titleStart: String
+    private let titleGoal: String
+    
     init(
-        router: Router
+        router: Router,
+        titleStart: String,
+        titleGoal: String
     ) {
         self.router = router
+        self.titleStart = titleStart
+        self.titleGoal = titleGoal
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -20,6 +27,25 @@ class WikipediaGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
+        
+        print("start: \(titleStart), goal: \(titleGoal)")
+        
+        addSubviews()
+        configSubviews()
+        constraintSubviews()
+        styleSubviews()
+    }
+    
+    private func addSubviews() {
+    }
+    
+    private func configSubviews() {
+    }
+    
+    private func constraintSubviews() {
+    }
+    
+    private func styleSubviews() {
     }
 }
