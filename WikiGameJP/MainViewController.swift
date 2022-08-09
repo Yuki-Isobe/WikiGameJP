@@ -1,5 +1,6 @@
 import BrightFutures
 import UIKit
+import SwiftUI
 
 class MainViewController: UIViewController {
     private let futureExecuteContext: ExecutionContext
@@ -9,6 +10,7 @@ class MainViewController: UIViewController {
     
     private var titles: [String] = []
     
+    private let labelContainer = UIView()
     private let startLabel = UILabel()
     private let goalLabel = UILabel()
     
@@ -62,8 +64,9 @@ class MainViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(startLabel)
-        view.addSubview(goalLabel)
+        view.addSubview(labelContainer)
+        labelContainer.addSubview(startLabel)
+        labelContainer.addSubview(goalLabel)
         
         view.addSubview(titleSwapButton)
         view.addSubview(titleReloadButton)
@@ -92,23 +95,26 @@ class MainViewController: UIViewController {
     }
     
     private func constraintSubviews() {
-        startLabel.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
-        startLabel.constrainLeft(to: .Left, of: view)
-        startLabel.constrainRight(to: .Right, of: view)
+        labelContainer.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        labelContainer.constrainHeight(constant: 200)
+        labelContainer.constrainLeft(to: .Left, of: view)
+        labelContainer.constrainRight(to: .Right, of: view)
         
-        titleSwapButton.constrainTop(to: .Bottom, of: startLabel)
-        titleSwapButton.constrainBottom(to: .Top, of: goalLabel)
-        titleSwapButton.constrainLeft(to: .Left, of: view)
+        startLabel.constrainTop(to: .Top, of: labelContainer)
+        startLabel.constrainXCenter(to: .CenterXAnchor, of: labelContainer)
+        
+        goalLabel.constrainBottom(to: .Bottom, of: labelContainer)
+        goalLabel.constrainXCenter(to: .CenterXAnchor, of: labelContainer)
+        
+        titleSwapButton.constrainTop(to: .Top, of: labelContainer)
+        titleSwapButton.constrainBottom(to: .Bottom, of: labelContainer)
+        titleSwapButton.constrainLeft(to: .Left, of: view, constant: 20)
 
-        titleReloadButton.constrainTop(to: .Bottom, of: startLabel)
-        titleReloadButton.constrainBottom(to: .Top, of: goalLabel)
-        titleReloadButton.constrainRight(to: .Right, of: view)
-        
-        goalLabel.constrainTop(to: .Bottom, of: titleSwapButton)
-        goalLabel.constrainLeft(to: .Left, of: view)
-        goalLabel.constrainRight(to: .Right, of: view)
-        
-        gameStartButton.constrainTop(to: .Bottom, of: goalLabel)
+        titleReloadButton.constrainTop(to: .Top, of: labelContainer)
+        titleReloadButton.constrainBottom(to: .Bottom, of: labelContainer)
+        titleReloadButton.constrainRight(to: .Right, of: view, constant: -20)
+
+        gameStartButton.constrainTop(to: .Bottom, of: labelContainer, constant: 20)
         gameStartButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
