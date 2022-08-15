@@ -3,6 +3,7 @@ import Foundation
 
 protocol WikipediaRepository {
     func getTitles() -> Future<WikipediaTitleResponse, AppError>
+    func getInfo(title: String)
 }
 
 class WikipediaRepositoryImpl: WikipediaRepository {
@@ -23,6 +24,10 @@ class WikipediaRepositoryImpl: WikipediaRepository {
         }
         
         return result
+    }
+    
+    func getInfo(title: String) {
+        print("not yet")
     }
     
     private func parse<T: Decodable>(data: Any, _ type: T.Type) -> Result<T, AppError> {

@@ -4,16 +4,19 @@ import BrightFutures
 
 class WikipediaGameViewController: UIViewController {
     private let router: Router
+    private let wikipediaRepository: WikipediaRepository
     
     private let titleStart: String
     private let titleGoal: String
     
     init(
         router: Router,
+        wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
         titleStart: String,
         titleGoal: String
     ) {
         self.router = router
+        self.wikipediaRepository = wikipediaRepository
         self.titleStart = titleStart
         self.titleGoal = titleGoal
         
@@ -30,6 +33,7 @@ class WikipediaGameViewController: UIViewController {
         view.backgroundColor = .white
         
         print("start: \(titleStart), goal: \(titleGoal)")
+        wikipediaRepository.getInfo(title: titleStart)
         
         addSubviews()
         configSubviews()
