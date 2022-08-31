@@ -3,7 +3,7 @@ import Foundation
 
 class WikipediaTitleResponseFactory {
     static func create(
-        query: WikipediaQuery = WikipediaQueryFactory.create()
+        query: WikipediaTitleQuery = WikipediaTitleQueryFactory.create()
     ) -> WikipediaTitleResponse {
         WikipediaTitleResponse(
             query: query
@@ -12,11 +12,11 @@ class WikipediaTitleResponseFactory {
 }
 
 
-class WikipediaQueryFactory {
+class WikipediaTitleQueryFactory {
     static func create(
         random: [WikipediaTitle] = []
-    ) -> WikipediaQuery {
-        WikipediaQuery(
+    ) -> WikipediaTitleQuery {
+        WikipediaTitleQuery(
             random: random
         )
     }

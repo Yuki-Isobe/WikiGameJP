@@ -3,7 +3,7 @@ import Foundation
 
 protocol WikipediaRepository {
     func getTitles() -> Future<WikipediaTitleResponse, AppError>
-    func getInfo(title: String)
+    func getPageInfo(title: String) -> Future<WikipediaPageInfoResponse, AppError>
 }
 
 class WikipediaRepositoryImpl: WikipediaRepository {
@@ -26,8 +26,14 @@ class WikipediaRepositoryImpl: WikipediaRepository {
         return result
     }
     
-    func getInfo(title: String) {
-        print("not yet")
+    func getPageInfo(title: String) -> Future<WikipediaPageInfoResponse, AppError> {
+        let url = urlGenerator.generateGetPageInfoUrl() + title
+        print("URL: \(url)")
+        let result = http.get(path: url).flatMap { response in
+            self.parse(data: response, WikipediaPageInfoResponse.self)
+        }
+        
+        return result
     }
     
     private func parse<T: Decodable>(data: Any, _ type: T.Type) -> Result<T, AppError> {
@@ -40,7 +46,8 @@ class WikipediaRepositoryImpl: WikipediaRepository {
         do {
             let response = try decoder.decode(T.self, from: validData)
             return .success(response)
-        } catch _ {
+        } catch let exception {
+            print("ERROR: \(exception.localizedDescription)")
             return .failure(.ParseFailed)
         }
         return Result.failure(.ParseFailed)

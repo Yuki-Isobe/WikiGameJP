@@ -20,7 +20,7 @@ class MainViewControllerTests: XCTestCase {
         
         given(mockWikipediaRepository.getTitles()).willReturn(
             Future(value: WikipediaTitleResponseFactory.create(
-                query: WikipediaQueryFactory.create(
+                query: WikipediaTitleQueryFactory.create(
                     random: [
                         WikipediaTitleFactory.create(
                             title: "fake-title-1"
@@ -89,7 +89,7 @@ class MainViewControllerTests: XCTestCase {
     func test_tapGameStartButton() {
         let startTitle = "fake-start-title"
         let wikipediaTitleResponce = WikipediaTitleResponseFactory.create(
-            query: WikipediaQueryFactory.create(
+            query: WikipediaTitleQueryFactory.create(
                 random: [
                     WikipediaTitleFactory.create(
                         title: startTitle

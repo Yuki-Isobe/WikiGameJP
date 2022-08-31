@@ -25,8 +25,10 @@
 		B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D4288D6AC800979CBB /* UIViewExtensions.swift */; };
 		B21675D8288D6C6700979CBB /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D7288D6C6700979CBB /* R.swift */; };
 		B21675DB288D6EF100979CBB /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675DA288D6EF100979CBB /* Constraints.swift */; };
+		B273E35D28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B273E35C28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift */; };
 		B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27FFB082892900000A1180E /* UIButtonExtensions.swift */; };
 		B281233B28AA16020067EACA /* WikipediaGameViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B281233A28AA16020067EACA /* WikipediaGameViewControllerTests.swift */; };
+		B2943AE728BB83460079AE86 /* WikipediaPageInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2943AE628BB83460079AE86 /* WikipediaPageInfoResponse.swift */; };
 		B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */; };
 		B2C268F3288E968300677F64 /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F2288E968300677F64 /* Http.swift */; };
 		B2C268F5288E96A700677F64 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C268F4288E96A700677F64 /* AppError.swift */; };
@@ -81,8 +83,10 @@
 		B21675D4288D6AC800979CBB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B21675D7288D6C6700979CBB /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		B21675DA288D6EF100979CBB /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		B273E35C28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaPageInfoResponseFactory.swift; sourceTree = "<group>"; };
 		B27FFB082892900000A1180E /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		B281233A28AA16020067EACA /* WikipediaGameViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaGameViewControllerTests.swift; sourceTree = "<group>"; };
+		B2943AE628BB83460079AE86 /* WikipediaPageInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaPageInfoResponse.swift; sourceTree = "<group>"; };
 		B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRepositoryTests.swift; sourceTree = "<group>"; };
 		B2C268F2288E968300677F64 /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		B2C268F4288E96A700677F64 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */,
+				B2943AE628BB83460079AE86 /* WikipediaPageInfoResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */,
+				B273E35C28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				B200B1A2288CF1D800BB7874 /* SceneDelegate.swift in Sources */,
 				B21675D8288D6C6700979CBB /* R.swift in Sources */,
 				B2095A9C2897D61200E91226 /* WikipediaGameViewController.swift in Sources */,
+				B2943AE728BB83460079AE86 /* WikipediaPageInfoResponse.swift in Sources */,
 				B2C268F5288E96A700677F64 /* AppError.swift in Sources */,
 				B2095A952897D21000E91226 /* NavigationRouter.swift in Sources */,
 				B21675DB288D6EF100979CBB /* Constraints.swift in Sources */,
@@ -470,6 +477,7 @@
 				B281233B28AA16020067EACA /* WikipediaGameViewControllerTests.swift in Sources */,
 				B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */,
 				B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */,
+				B273E35D28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift in Sources */,
 				ED66E61D0362BACC65549AA7 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

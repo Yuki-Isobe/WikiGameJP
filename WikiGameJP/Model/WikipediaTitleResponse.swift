@@ -1,10 +1,10 @@
 import Foundation
 
 struct WikipediaTitleResponse: Decodable, Equatable {
-    var query: WikipediaQuery
+    var query: WikipediaTitleQuery
 }
 
-struct WikipediaQuery: Decodable, Equatable {
+struct WikipediaTitleQuery: Decodable, Equatable {
     var random: [WikipediaTitle]
 }
 

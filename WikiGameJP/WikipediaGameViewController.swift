@@ -33,7 +33,7 @@ class WikipediaGameViewController: UIViewController {
         view.backgroundColor = .white
         
         print("start: \(titleStart), goal: \(titleGoal)")
-        wikipediaRepository.getInfo(title: titleStart)
+        wikipediaRepository.getPageInfo(title: titleStart)
         
         addSubviews()
         configSubviews()

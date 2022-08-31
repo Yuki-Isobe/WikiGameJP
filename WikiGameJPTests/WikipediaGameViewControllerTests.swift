@@ -24,7 +24,7 @@ class WikipediaGameViewControllerTests: XCTestCase {
         initSubject(titleStart: titleStart, titleGoal: titleGoal)
         _ = subject.view
         
-        verify(mockWikipediaRepository.getInfo(title: titleStart)).wasCalled()
+        verify(mockWikipediaRepository.getPageInfo(title: titleStart)).wasCalled()
     }
     
     private func initSubject(titleStart: String = "", titleGoal: String = "") {
