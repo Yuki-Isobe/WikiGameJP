@@ -6,5 +6,7 @@ enum R {
         case MainView_titleSwapButton
         case MainView_titleReloadButton
         case MainView_gameStartButton
+        case GameView_startTitle
+        case GameView_goalTitle
     }
 }

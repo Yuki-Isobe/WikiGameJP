@@ -9,6 +9,9 @@ class WikipediaGameViewController: UIViewController {
     private let titleStart: String
     private let titleGoal: String
     
+    private let startLabel = UILabel()
+    private let goalLabel = UILabel()
+    
     init(
         router: Router,
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
@@ -42,9 +45,18 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func addSubviews() {
+        view.addSubview(startLabel)
+        view.addSubview(goalLabel)
     }
     
     private func configSubviews() {
+        startLabel.accessibilityIdentifier = R.id.GameView_startTitle.rawValue
+        startLabel.textAlignment = .center
+        startLabel.text = titleStart
+        
+        goalLabel.accessibilityIdentifier = R.id.GameView_goalTitle.rawValue
+        goalLabel.textAlignment = .center
+        goalLabel.text = titleGoal
     }
     
     private func constraintSubviews() {
