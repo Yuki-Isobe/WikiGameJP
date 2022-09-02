@@ -20,7 +20,7 @@ class WikipediaRepositoryTests: XCTestCase {
         mockWikipediaUrlGenerator = mock(WikipediaUrlGenerator.self)
         
         given(mockWikipediaUrlGenerator.generateGetTitleUrl()).willReturn(fakeGetTitleUrl)
-        given(mockWikipediaUrlGenerator.generateGetPageInfoUrl()).willReturn(fakeGetPageInfoUrl)
+        given(mockWikipediaUrlGenerator.generateGetPageInfoUrl(title: any())).willReturn(fakeGetPageInfoUrl)
 
         subject = WikipediaRepositoryImpl(
             http: mockHttp,
@@ -56,6 +56,8 @@ class WikipediaRepositoryTests: XCTestCase {
         
         let json = "{\"batchcomplete\":\"\",\"warnings\":{\"main\":{\"*\":\"fake-main\"},\"revisions\":{\"*\":\"fake-revisions\"}},\"query\":{\"normalized\":[{\"from\":\"fake-normalized-from\",\"to\":\"fake-normalized-to\"}],\"pages\":{\"2115905\":{\"pageid\":2115905,\"ns\":0,\"title\":\"fake-title\",\"revisions\":[{\"*\":\"fake-text\"}]}}}}"
         let jsonData = json.data(using: .utf8)
+        
+        given(mockWikipediaUrlGenerator.generateGetPageInfoUrl(title: title)).willReturn(url)
         
         given(mockHttp.get(path: url, basePath: any(), headers: any(), timeoutInterval: any())).willReturn(
             Future(value: jsonData!)

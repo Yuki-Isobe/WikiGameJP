@@ -2,7 +2,7 @@ import Foundation
 
 protocol WikipediaUrlGenerator {
     func generateGetTitleUrl() -> String
-    func generateGetPageInfoUrl() -> String
+    func generateGetPageInfoUrl(title: String) -> String
 }
 
 class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
@@ -11,10 +11,19 @@ class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
     func generateGetTitleUrl() -> String {
         let query = "?action=query&format=json&list=random&rnnamespace=0&rnlimit=2"
         
-        return basePath + query
+        var url = basePath
+        url.append(query)
+        
+        return url
     }
     
-    func generateGetPageInfoUrl() -> String {
-        return ""
+    func generateGetPageInfoUrl(title: String) -> String {
+        let query = "?format=json&action=query&prop=revisions&rvprop=content&rvparse=1&titles="
+        
+        var url = basePath
+        url.append(query)
+        url.append(title)
+        
+        return url
     }
 }

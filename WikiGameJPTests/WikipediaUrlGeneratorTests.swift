@@ -17,4 +17,13 @@ class WikipediaUrlGeneratorTests: XCTestCase {
         
         expect(actual).to(equal(expectUrl))
     }
+    
+    func test_generateGetPageInfoUrl() {
+        let title = "fake-title"
+        
+        let actual = subject.generateGetPageInfoUrl(title: title)
+        let expectUrl = "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvparse=1&titles=fake-title"
+        
+        expect(actual).to(equal(expectUrl))
+    }
 }
