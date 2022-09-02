@@ -13,7 +13,7 @@ class WikipediaPageInfoResponseFactory {
 
 class WikipediaPageInfoQueryFactory {
     static func create(
-        pages: [Int: WikipediaPageInfo] = [:]
+        pages: [String: WikipediaPageInfo] = [:]
     ) -> WikipediaPageInfoQuery {
         WikipediaPageInfoQuery(
             pages: pages

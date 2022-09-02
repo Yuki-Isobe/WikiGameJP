@@ -5,7 +5,7 @@ struct WikipediaPageInfoResponse: Decodable, Equatable {
 }
 
 struct WikipediaPageInfoQuery: Decodable, Equatable {
-    var pages: [Int: WikipediaPageInfo]
+    var pages: [String: WikipediaPageInfo]
 }
 
 struct WikipediaPageInfo: Decodable, Equatable {
@@ -17,7 +17,7 @@ struct WikipediaPageInfo: Decodable, Equatable {
 struct WikipediaPageInfoRevision: Decodable, Equatable {
     var content: String
     
-    enum WikipediaInfoRevisionKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case content = "*"
     }
 }

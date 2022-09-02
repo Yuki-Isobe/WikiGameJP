@@ -66,7 +66,7 @@ class WikipediaRepositoryTests: XCTestCase {
         let expectResponse =
         WikipediaPageInfoResponseFactory.create(
             query: WikipediaPageInfoQueryFactory.create(
-                pages: [2115905: WikipediaPageInfoFactory.create(
+                pages: ["2115905": WikipediaPageInfoFactory.create(
                     pageid: 2115905,
                     title: "fake-title",
                     revisions: [

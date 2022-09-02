@@ -28,7 +28,6 @@ class WikipediaRepositoryImpl: WikipediaRepository {
     
     func getPageInfo(title: String) -> Future<WikipediaPageInfoResponse, AppError> {
         let url = urlGenerator.generateGetPageInfoUrl() + title
-        print("URL: \(url)")
         let result = http.get(path: url).flatMap { response in
             self.parse(data: response, WikipediaPageInfoResponse.self)
         }
