@@ -17,7 +17,22 @@ class WikipediaGameViewControllerTests: XCTestCase {
         mockWikipediaRepository = mock(WikipediaRepository.self)
         
         given(mockWikipediaRepository.getPageInfo(title: any())).willReturn(
-            Future(value: WikipediaPageInfoResponseFactory.create())
+            Future(value:
+                    WikipediaPageInfoResponseFactory.create(
+                        query: WikipediaPageInfoQueryFactory.create(
+                            pages: ["1000000": WikipediaPageInfoFactory.create(
+                                pageid: 1000000,
+                                title: "fake-title",
+                                revisions: [
+                                    WikipediaPageInfoRevisionFactory.create(
+                                        content: "fake-text"
+                                    )
+                                ]
+                            )
+                            ]
+                        )
+                    )
+            )
         )
     }
     

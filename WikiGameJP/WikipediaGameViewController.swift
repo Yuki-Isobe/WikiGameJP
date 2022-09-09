@@ -40,10 +40,12 @@ class WikipediaGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
         view.backgroundColor = .white
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: self.view.frame, configuration: webConfiguration)
+        webView.navigationDelegate = self
         
         addSubviews()
         configSubviews()
@@ -94,5 +96,17 @@ class WikipediaGameViewController: UIViewController {
             .onFailure(callback: { error in
                 print("\(error.localizedDescription)")
             })
+    }
+}
+
+extension WikipediaGameViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        let url = navigationAction.request.url
+        print(url ?? "")
+
+        decisionHandler(.allow)
     }
 }
