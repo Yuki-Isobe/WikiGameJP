@@ -1,8 +1,11 @@
 import Foundation
 import UIKit
+import WebKit
 import BrightFutures
 
 class WikipediaGameViewController: UIViewController {
+    private let futureExecuteContext: ExecutionContext
+
     private let router: Router
     private let wikipediaRepository: WikipediaRepository
     
@@ -11,15 +14,19 @@ class WikipediaGameViewController: UIViewController {
     
     private let startLabel = UILabel()
     private let goalLabel = UILabel()
+    private var webView: WKWebView!
     
     init(
         router: Router,
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
+        futureExecutionContext: @escaping ExecutionContext = defaultContext(),
         titleStart: String,
         titleGoal: String
     ) {
         self.router = router
         self.wikipediaRepository = wikipediaRepository
+        self.futureExecuteContext = futureExecutionContext
+
         self.titleStart = titleStart
         self.titleGoal = titleGoal
         
@@ -35,18 +42,21 @@ class WikipediaGameViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        print("start: \(titleStart), goal: \(titleGoal)")
-        wikipediaRepository.getPageInfo(title: titleStart)
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: self.view.frame, configuration: webConfiguration)
         
         addSubviews()
         configSubviews()
         constraintSubviews()
         styleSubviews()
+                
+        getPageInfo()
     }
     
     private func addSubviews() {
         view.addSubview(startLabel)
         view.addSubview(goalLabel)
+        view.addSubview(webView)
     }
     
     private func configSubviews() {
@@ -60,8 +70,29 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func constraintSubviews() {
+        webView.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        webView.constrainBottom(to: .Bottom, of: view)
+        webView.constrainLeft(to: .Left, of: view)
+        webView.constrainRight(to: .Right, of: view)
     }
     
     private func styleSubviews() {
+    }
+    
+    private func getPageInfo() {
+        print("start getPage")
+        wikipediaRepository.getPageInfo(title: titleStart)
+            .onSuccess(futureExecuteContext) { [weak self] result in
+                print("start getPage onSuccess")
+                guard let weakSelf = self else {
+                    return
+                }
+                let page = result.query.pages.first!
+                let content = page.value.revisions.first!.content
+                weakSelf.webView.loadHTMLString(content, baseURL: nil)
+            }
+            .onFailure(callback: { error in
+                print("\(error.localizedDescription)")
+            })
     }
 }
