@@ -9,10 +9,11 @@ class MainViewController: UIViewController {
     private let wikipediaRepository: WikipediaRepository
     
     private var titles: [String] = []
-    
-    private let labelContainer = UIView()
+
     private let startLabel = UILabel()
+    private let startSubLabel = UILabel()
     private let goalLabel = UILabel()
+    private let goalSubLabel = UILabel()
     
     private let titleSwapButton = UIButton()
     private let titleReloadButton = UIButton()
@@ -64,9 +65,10 @@ class MainViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(labelContainer)
-        labelContainer.addSubview(startLabel)
-        labelContainer.addSubview(goalLabel)
+        view.addSubview(startLabel)
+        view.addSubview(startSubLabel)
+        view.addSubview(goalLabel)
+        view.addSubview(goalSubLabel)
         
         view.addSubview(titleSwapButton)
         view.addSubview(titleReloadButton)
@@ -75,55 +77,108 @@ class MainViewController: UIViewController {
     }
     
     private func configSubviews() {
+        navigationController?.navigationBar.barTintColor = .blue
+        
         startLabel.accessibilityIdentifier = R.id.MainView_startTitle.rawValue
+        startLabel.textColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
         startLabel.textAlignment = .center
+        
+        startSubLabel.textAlignment = .center
+        startSubLabel.textColor = UIColor(red: 0.24, green: 0.34, blue: 0.36, alpha: 1.00)
+        startSubLabel.text = "から"
         
         goalLabel.accessibilityIdentifier = R.id.MainView_goalTitle.rawValue
         goalLabel.textAlignment = .center
         
+        goalSubLabel.textAlignment = .center
+        goalSubLabel.text = "まで"
+        
         titleSwapButton.accessibilityIdentifier = R.id.MainView_titleSwapButton.rawValue
         titleSwapButton.setImage(UIImage(systemName: "arrow.up.arrow.down"), for: .normal)
         titleSwapButton.addTarget(self, action: #selector(tappedTitleSwapButton), for: .touchUpInside)
+        titleSwapButton.layer.cornerRadius = 25
         
         titleReloadButton.accessibilityIdentifier = R.id.MainView_titleReloadButton.rawValue
         titleReloadButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
         titleReloadButton.addTarget(self, action: #selector(tappedTitleReloadButton), for: .touchUpInside)
+        titleReloadButton.layer.cornerRadius = 25
         
         gameStartButton.accessibilityIdentifier = R.id.MainView_gameStartButton.rawValue
-        gameStartButton.backgroundColor = .red
         gameStartButton.addTarget(self, action: #selector(tappedGameStartButton), for: .touchUpInside)
+        gameStartButton.layer.cornerRadius = 10
+        gameStartButton.setTitle("ゲーム開始", for: .normal)
     }
     
     private func constraintSubviews() {
-        labelContainer.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
-        labelContainer.constrainHeight(constant: 200)
-        labelContainer.constrainLeft(to: .Left, of: view)
-        labelContainer.constrainRight(to: .Right, of: view)
+        startLabel.constrainTop(to: .Top, of: view.safeAreaLayoutGuide, constant: 20)
+        startLabel.constrainRight(to: .Right, of: view, constant: -20)
+        startLabel.constrainLeft(to: .Left, of: view, constant: 20)
         
-        startLabel.constrainTop(to: .Top, of: labelContainer)
-        startLabel.constrainXCenter(to: .CenterXAnchor, of: labelContainer)
+        startSubLabel.constrainTop(to: .Bottom, of: startLabel, constant: 20)
+        startSubLabel.constrainRight(to: .Right, of: view, constant: -20)
+        startSubLabel.constrainLeft(to: .Left, of: view, constant: 10)
+
+        goalLabel.constrainTop(to: .Bottom, of: startSubLabel, constant: 70)
+        goalLabel.constrainRight(to: .Right, of: view, constant: -20)
+        goalLabel.constrainLeft(to: .Left, of: view, constant: 20)
         
-        goalLabel.constrainBottom(to: .Bottom, of: labelContainer)
-        goalLabel.constrainXCenter(to: .CenterXAnchor, of: labelContainer)
+        goalSubLabel.constrainTop(to: .Bottom, of: goalLabel, constant: 20)
+        goalSubLabel.constrainRight(to: .Right, of: view, constant: -20)
+        goalSubLabel.constrainLeft(to: .Left, of: view, constant: 10)
         
-        titleSwapButton.constrainTop(to: .Top, of: labelContainer)
-        titleSwapButton.constrainBottom(to: .Bottom, of: labelContainer)
+        titleSwapButton.constrainHeight(constant: 50)
+        titleSwapButton.constrainWidth(constant: 50)
+        titleSwapButton.constrainTop(to: .Bottom, of: startSubLabel, constant: 10)
         titleSwapButton.constrainLeft(to: .Left, of: view, constant: 20)
 
-        titleReloadButton.constrainTop(to: .Top, of: labelContainer)
-        titleReloadButton.constrainBottom(to: .Bottom, of: labelContainer)
+        titleReloadButton.constrainHeight(constant: 50)
+        titleReloadButton.constrainWidth(constant: 50)
+        titleReloadButton.constrainTop(to: .Bottom, of: startSubLabel, constant: 10)
         titleReloadButton.constrainRight(to: .Right, of: view, constant: -20)
 
-        gameStartButton.constrainTop(to: .Bottom, of: labelContainer, constant: 20)
+        gameStartButton.constrainTop(to: .Bottom, of: goalSubLabel, constant: 20)
         gameStartButton.constrainXCenter(to: .CenterXAnchor, of: view)
+        gameStartButton.constrainWidth(constant: 175)
+        gameStartButton.constrainHeight(constant: 75)
     }
     
     private func styleSubviews() {
-        startLabel.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
-        startLabel.numberOfLines = 0
+        let mainFont = UIFont.systemFont(ofSize: 40, weight: .heavy)
+        let subFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        let buttonFont = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        let mainColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
+        let subColor = UIColor(red: 0.24, green: 0.34, blue: 0.36, alpha: 1.00)
+        let startButtonColor = UIColor(red: 0.24, green: 0.63, blue: 0.33, alpha: 1.00)
+        let buttonsTintColor = UIColor(red: 0.55, green: 0.57, blue: 0.55, alpha: 1.00)
+        let buttonsBackgroundColor = UIColor(red: 0.90, green: 0.89, blue: 0.89, alpha: 1.00)
         
-        goalLabel.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
-        goalLabel.numberOfLines = 0
+        startLabel.font = mainFont
+        startLabel.textColor = mainColor
+        startLabel.adjustsFontSizeToFitWidth = true
+        startLabel.minimumScaleFactor = 0.3
+        startLabel.numberOfLines = 4
+        
+        startSubLabel.font = subFont
+        startSubLabel.textColor = subColor
+
+        goalLabel.font = mainFont
+        goalLabel.textColor = mainColor
+        goalLabel.adjustsFontSizeToFitWidth = true
+        goalLabel.minimumScaleFactor = 0.3
+        goalLabel.numberOfLines = 4
+        
+        goalSubLabel.font = subFont
+        goalSubLabel.textColor = subColor
+        
+        titleSwapButton.imageView?.tintColor = buttonsTintColor
+        titleSwapButton.backgroundColor = buttonsBackgroundColor
+        
+        titleReloadButton.imageView?.tintColor = buttonsTintColor
+        titleReloadButton.backgroundColor = buttonsBackgroundColor
+        
+        gameStartButton.titleLabel?.font = buttonFont
+        gameStartButton.backgroundColor = startButtonColor
+        gameStartButton.setTitleColor(.white, for: .normal)
     }
     
     @objc func tappedTitleSwapButton() {

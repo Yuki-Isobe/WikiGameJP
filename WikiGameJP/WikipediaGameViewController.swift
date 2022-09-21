@@ -52,7 +52,7 @@ class WikipediaGameViewController: UIViewController {
         constraintSubviews()
         styleSubviews()
                 
-        getPageInfo()
+        getPageInfo(targetTitle: titleStart)
     }
     
     private func addSubviews() {
@@ -81,11 +81,9 @@ class WikipediaGameViewController: UIViewController {
     private func styleSubviews() {
     }
     
-    private func getPageInfo() {
-        print("start getPage")
-        wikipediaRepository.getPageInfo(title: titleStart)
+    private func getPageInfo(targetTitle: String) {
+        wikipediaRepository.getPageInfo(title: targetTitle)
             .onSuccess(futureExecuteContext) { [weak self] result in
-                print("start getPage onSuccess")
                 guard let weakSelf = self else {
                     return
                 }
@@ -103,10 +101,23 @@ extension WikipediaGameViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
+        print("Link!! Link!!")
         let url = navigationAction.request.url
-        print(url ?? "")
+//        print(url ?? "blank link")
+//
+//        if url!.hasPrefix("/wiki/") {
+//            print("wiki!!")
+//        }
 
         decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        return nil
     }
 }
