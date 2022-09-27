@@ -25,7 +25,7 @@ class WikipediaGameViewControllerTests: XCTestCase {
                                 title: "fake-title",
                                 revisions: [
                                     WikipediaPageInfoRevisionFactory.create(
-                                        content: "fake-text"
+                                        content: "<html><body><p>fake-string</p></body></html>"
                                     )
                                 ]
                             )

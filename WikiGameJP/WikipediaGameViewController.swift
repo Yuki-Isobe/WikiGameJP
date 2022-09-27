@@ -13,7 +13,11 @@ class WikipediaGameViewController: UIViewController {
     private let titleGoal: String
     
     private let startLabel = UILabel()
+    private let arrowLabel = UILabel()
+    private let countLabel = UILabel()
     private let goalLabel = UILabel()
+    
+    private let headerView = UIView()
     private var webView: WKWebView!
     
     init(
@@ -56,8 +60,11 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(startLabel)
-        view.addSubview(goalLabel)
+        view.addSubview(headerView)
+        headerView.addSubview(startLabel)
+        headerView.addSubview(arrowLabel)
+        headerView.addSubview(countLabel)
+        headerView.addSubview(goalLabel)
         view.addSubview(webView)
     }
     
@@ -66,19 +73,66 @@ class WikipediaGameViewController: UIViewController {
         startLabel.textAlignment = .center
         startLabel.text = titleStart
         
+        arrowLabel.textAlignment = .center
+        arrowLabel.text = "↓"
+        
+        countLabel.textAlignment = .center
+        countLabel.text = "0"
+        
         goalLabel.accessibilityIdentifier = R.id.GameView_goalTitle.rawValue
         goalLabel.textAlignment = .center
         goalLabel.text = titleGoal
     }
     
     private func constraintSubviews() {
-        webView.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        headerView.constrainHeight(constant: 200)
+        headerView.constrainTop(to: .Top, of: view)
+        headerView.constrainLeft(to: .Left, of: view)
+        headerView.constrainRight(to: .Right, of: view)
+        
+        startLabel.constrainTop(to: .Top, of: headerView, constant: 50)
+        startLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
+        
+        arrowLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
+        arrowLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
+        
+        countLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
+        countLabel.constrainRight(to: .Right, of: headerView, constant: -20)
+        
+        goalLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
+        goalLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
+        
+        webView.constrainTop(to: .Bottom, of: headerView, constant: 1)
         webView.constrainBottom(to: .Bottom, of: view)
         webView.constrainLeft(to: .Left, of: view)
         webView.constrainRight(to: .Right, of: view)
     }
     
     private func styleSubviews() {
+        let headerColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
+        let labelFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        let labelColor = UIColor.white
+        
+        headerView.backgroundColor = headerColor
+        
+        startLabel.font = labelFont
+        startLabel.textColor = labelColor
+        startLabel.adjustsFontSizeToFitWidth = true
+        startLabel.minimumScaleFactor = 0.2
+        startLabel.numberOfLines = 3
+        
+        arrowLabel.font = labelFont
+        arrowLabel.textColor = labelColor
+        
+        countLabel.font = labelFont
+        countLabel.textColor = labelColor
+
+        goalLabel.font = labelFont
+        goalLabel.textColor = labelColor
+        goalLabel.adjustsFontSizeToFitWidth = true
+        goalLabel.minimumScaleFactor = 0.2
+        goalLabel.numberOfLines = 3
+
     }
     
     private func getPageInfo(targetTitle: String) {
@@ -101,15 +155,9 @@ extension WikipediaGameViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print("Link!! Link!!")
-        let url = navigationAction.request.url
-//        print(url ?? "blank link")
-//
-//        if url!.hasPrefix("/wiki/") {
-//            print("wiki!!")
-//        }
-
-        decisionHandler(.allow)
+        if let url = navigationAction.request.url {
+            decisionHandler(.allow)
+        }
     }
     
     func webView(_ webView: WKWebView,
