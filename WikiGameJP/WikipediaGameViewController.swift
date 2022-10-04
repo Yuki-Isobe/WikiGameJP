@@ -11,6 +11,7 @@ class WikipediaGameViewController: UIViewController {
     
     private let titleStart: String
     private let titleGoal: String
+    private var count: Int = 0
     
     private let startLabel = UILabel()
     private let arrowLabel = UILabel()
@@ -76,8 +77,9 @@ class WikipediaGameViewController: UIViewController {
         arrowLabel.textAlignment = .center
         arrowLabel.text = "↓"
         
+        countLabel.accessibilityIdentifier = R.id.GameView_count.rawValue
         countLabel.textAlignment = .center
-        countLabel.text = "0"
+        countLabel.text = String(count)
         
         goalLabel.accessibilityIdentifier = R.id.GameView_goalTitle.rawValue
         goalLabel.textAlignment = .center
@@ -92,6 +94,7 @@ class WikipediaGameViewController: UIViewController {
         
         startLabel.constrainTop(to: .Top, of: headerView, constant: 50)
         startLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
+        startLabel.constrainRight(to: .Right, of: headerView, constant: -20)
         
         arrowLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
         arrowLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
@@ -101,6 +104,7 @@ class WikipediaGameViewController: UIViewController {
         
         goalLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
         goalLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
+        goalLabel.constrainRight(to: .Right, of: headerView, constant: -20)
         
         webView.constrainTop(to: .Bottom, of: headerView, constant: 1)
         webView.constrainBottom(to: .Bottom, of: view)
@@ -120,6 +124,7 @@ class WikipediaGameViewController: UIViewController {
         startLabel.adjustsFontSizeToFitWidth = true
         startLabel.minimumScaleFactor = 0.2
         startLabel.numberOfLines = 3
+        startLabel.textAlignment = .left
         
         arrowLabel.font = labelFont
         arrowLabel.textColor = labelColor
@@ -132,6 +137,7 @@ class WikipediaGameViewController: UIViewController {
         goalLabel.adjustsFontSizeToFitWidth = true
         goalLabel.minimumScaleFactor = 0.2
         goalLabel.numberOfLines = 3
+        goalLabel.textAlignment = .left
 
     }
     
@@ -149,15 +155,37 @@ class WikipediaGameViewController: UIViewController {
                 print("\(error.localizedDescription)")
             })
     }
+    
+    private func addCount() {
+        count += 1
+        countLabel.text = String(count)
+    }
 }
 
 extension WikipediaGameViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url {
-            decisionHandler(.allow)
+        
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.cancel)
+            return
         }
+        
+        if url.absoluteString == "about:blank" {
+            decisionHandler(.allow)
+            return
+        }
+        
+        let targetUrl = "/wiki/"
+        if url.absoluteString.hasPrefix(targetUrl){
+            let targetTitle = String(url.absoluteString.dropFirst(targetUrl.count))
+            
+            addCount()
+            getPageInfo(targetTitle: targetTitle)
+        }
+            decisionHandler(.cancel)
+        
     }
     
     func webView(_ webView: WKWebView,

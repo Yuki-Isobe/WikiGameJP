@@ -51,6 +51,33 @@ class WikipediaGameViewControllerTests: XCTestCase {
         expect(goalLabel?.text).toEventually(equal(titleGoal))
     }
     
+    func test_addCount_when_tapped_link() {
+        given(mockWikipediaRepository.getPageInfo(title: any())).willReturn(
+            Future(value:
+                    WikipediaPageInfoResponseFactory.create(
+                        query: WikipediaPageInfoQueryFactory.create(
+                            pages: ["1000000": WikipediaPageInfoFactory.create(
+                                pageid: 1000000,
+                                title: "fake-title",
+                                revisions: [
+                                    WikipediaPageInfoRevisionFactory.create(
+                                        content: "<html><body><a href=\"/wiki/fake-link\">fake-string</a></body></html>"
+                                    )
+                                ]
+                            )
+                            ]
+                        )
+                    )
+            )
+        )
+        
+        initSubject()
+        _ = subject.view
+        
+        let countLabel = subject.view.findLabel(withId: R.id.GameView_count.rawValue)
+        expect(countLabel?.text).to(equal("0"))
+    }
+    
     private func initSubject(titleStart: String = "", titleGoal: String = "") {
         subject = WikipediaGameViewController(
             router: routerSpy,
