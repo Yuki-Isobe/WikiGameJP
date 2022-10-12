@@ -26,6 +26,8 @@
 		B21675D5288D6AC800979CBB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D4288D6AC800979CBB /* UIViewExtensions.swift */; };
 		B21675D8288D6C6700979CBB /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675D7288D6C6700979CBB /* R.swift */; };
 		B21675DB288D6EF100979CBB /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21675DA288D6EF100979CBB /* Constraints.swift */; };
+		B247BC0528F6C32400661074 /* WikipediaGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247BC0428F6C32400661074 /* WikipediaGoalViewController.swift */; };
+		B247BC0728F6C4EE00661074 /* WikipediaGoalViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247BC0628F6C4EE00661074 /* WikipediaGoalViewControllerTests.swift */; };
 		B273E35D28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B273E35C28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift */; };
 		B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27FFB082892900000A1180E /* UIButtonExtensions.swift */; };
 		B281233B28AA16020067EACA /* WikipediaGameViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B281233A28AA16020067EACA /* WikipediaGameViewControllerTests.swift */; };
@@ -84,6 +86,8 @@
 		B21675D4288D6AC800979CBB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B21675D7288D6C6700979CBB /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		B21675DA288D6EF100979CBB /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		B247BC0428F6C32400661074 /* WikipediaGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaGoalViewController.swift; sourceTree = "<group>"; };
+		B247BC0628F6C4EE00661074 /* WikipediaGoalViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaGoalViewControllerTests.swift; sourceTree = "<group>"; };
 		B273E35C28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaPageInfoResponseFactory.swift; sourceTree = "<group>"; };
 		B27FFB082892900000A1180E /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		B281233A28AA16020067EACA /* WikipediaGameViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaGameViewControllerTests.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				B21675CE288D025500979CBB /* WikipediaRepository.swift */,
 				B2C26902288E9A8F00677F64 /* WikipediaUrlGenerator.swift */,
 				B2095A9B2897D61200E91226 /* WikipediaGameViewController.swift */,
+				B247BC0428F6C32400661074 /* WikipediaGoalViewController.swift */,
 			);
 			path = WikiGameJP;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				B2C268EF288E957800677F64 /* WikipediaRepositoryTests.swift */,
 				B2EA5328288FEB4E00EF20B3 /* WikipediaUrlGeneratorTests.swift */,
 				B281233A28AA16020067EACA /* WikipediaGameViewControllerTests.swift */,
+				B247BC0628F6C4EE00661074 /* WikipediaGoalViewControllerTests.swift */,
 			);
 			path = WikiGameJPTests;
 			sourceTree = "<group>";
@@ -457,6 +463,7 @@
 				B2095A9C2897D61200E91226 /* WikipediaGameViewController.swift in Sources */,
 				B2943AE728BB83460079AE86 /* WikipediaPageInfoResponse.swift in Sources */,
 				B2C268F5288E96A700677F64 /* AppError.swift in Sources */,
+				B247BC0528F6C32400661074 /* WikipediaGoalViewController.swift in Sources */,
 				B2095A952897D21000E91226 /* NavigationRouter.swift in Sources */,
 				B21675DB288D6EF100979CBB /* Constraints.swift in Sources */,
 				B21675CF288D025500979CBB /* WikipediaRepository.swift in Sources */,
@@ -472,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B247BC0728F6C4EE00661074 /* WikipediaGoalViewControllerTests.swift in Sources */,
 				B2EA5329288FEB4E00EF20B3 /* WikipediaUrlGeneratorTests.swift in Sources */,
 				B2095A9A2897D2C000E91226 /* NavigationRouterSpy.swift in Sources */,
 				B2C26909288E9F4300677F64 /* WikipediaTitleResponseFactory.swift in Sources */,

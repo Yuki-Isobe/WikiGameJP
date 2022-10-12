@@ -15,6 +15,7 @@ class WikipediaGameViewController: UIViewController {
     
     private let startLabel = UILabel()
     private let arrowLabel = UILabel()
+    private let scoreLabel = UILabel()
     private let countLabel = UILabel()
     private let goalLabel = UILabel()
     
@@ -66,6 +67,7 @@ class WikipediaGameViewController: UIViewController {
         view.addSubview(headerView)
         headerView.addSubview(startLabel)
         headerView.addSubview(arrowLabel)
+        headerView.addSubview(scoreLabel)
         headerView.addSubview(countLabel)
         headerView.addSubview(goalLabel)
         view.addSubview(webView)
@@ -80,6 +82,8 @@ class WikipediaGameViewController: UIViewController {
         arrowLabel.textAlignment = .center
         arrowLabel.text = "↓"
         
+        scoreLabel.textAlignment = .center
+        scoreLabel.text = "Score:"
         
         countLabel.accessibilityIdentifier = R.id.GameView_count.rawValue
         countLabel.textAlignment = .center
@@ -105,6 +109,9 @@ class WikipediaGameViewController: UIViewController {
         
         countLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
         countLabel.constrainRight(to: .Right, of: headerView, constant: -20)
+        
+        scoreLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
+        scoreLabel.constrainRight(to: .Left, of: countLabel, constant: -10)
         
         goalLabel.constrainTop(to: .Bottom, of: arrowLabel, constant: 5)
         goalLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
@@ -138,6 +145,9 @@ class WikipediaGameViewController: UIViewController {
         
         arrowLabel.font = labelFont
         arrowLabel.textColor = labelColor
+        
+        scoreLabel.font = labelFont
+        scoreLabel.textColor = labelColor
         
         countLabel.font = labelFont
         countLabel.textColor = labelColor
@@ -184,7 +194,7 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func setCount() {
-        countLabel.text = "Score: \(count)"
+        countLabel.text = "\(count)"
     }
 }
 
