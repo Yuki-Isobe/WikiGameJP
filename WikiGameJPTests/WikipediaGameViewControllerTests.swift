@@ -75,7 +75,7 @@ class WikipediaGameViewControllerTests: XCTestCase {
         _ = subject.view
         
         let countLabel = subject.view.findLabel(withId: R.id.GameView_count.rawValue)
-        expect(countLabel?.text).to(equal("0"))
+        expect(countLabel?.text).to(equal("Score: 0"))
     }
     
     private func initSubject(titleStart: String = "", titleGoal: String = "") {

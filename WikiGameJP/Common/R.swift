@@ -9,5 +9,6 @@ enum R {
         case GameView_startTitle
         case GameView_goalTitle
         case GameView_count
+        case GameView_Indicator
     }
 }

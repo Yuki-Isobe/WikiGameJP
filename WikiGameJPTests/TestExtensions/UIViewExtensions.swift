@@ -288,6 +288,35 @@ extension UIView {
         }
         return nil
     }
+    
+    @objc public func findIndicator(withId text: String) -> UIActivityIndicatorView? {
+        if let stackView = self as? UIStackView {
+            for arrangedSubview in stackView.arrangedSubviews where arrangedSubview.isHidden == false {
+                if let uiIndicator = arrangedSubview as? UIActivityIndicatorView {
+                    if uiIndicator.accessibilityIdentifier == text {
+                        return uiIndicator
+                    }
+                }
+
+                if let uiIndicator = arrangedSubview.findIndicator(withId: text) {
+                    return uiIndicator
+                }
+            }
+        }
+
+        for subview in subviews where subview.isHidden == false {
+            if let uiIndicator = subview as? UIActivityIndicatorView {
+                if uiIndicator.accessibilityIdentifier == text {
+                    return uiIndicator
+                }
+            }
+
+            if let uiIndicator = subview.findIndicator(withId: text) {
+                return uiIndicator
+            }
+        }
+        return nil
+    }
 
     func getTopConstraint() -> NSLayoutConstraint? {
         guard let superview = superview else {

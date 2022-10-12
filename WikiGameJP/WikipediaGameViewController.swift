@@ -18,6 +18,8 @@ class WikipediaGameViewController: UIViewController {
     private let countLabel = UILabel()
     private let goalLabel = UILabel()
     
+    private let indicator = UIActivityIndicatorView()
+    
     private let headerView = UIView()
     private var webView: WKWebView!
     
@@ -57,7 +59,7 @@ class WikipediaGameViewController: UIViewController {
         constraintSubviews()
         styleSubviews()
                 
-        getPageInfo(targetTitle: titleStart)
+        getPageInfo(targetTitle: titleStart, isFirst: true)
     }
     
     private func addSubviews() {
@@ -67,6 +69,7 @@ class WikipediaGameViewController: UIViewController {
         headerView.addSubview(countLabel)
         headerView.addSubview(goalLabel)
         view.addSubview(webView)
+        view.addSubview(indicator)
     }
     
     private func configSubviews() {
@@ -77,24 +80,25 @@ class WikipediaGameViewController: UIViewController {
         arrowLabel.textAlignment = .center
         arrowLabel.text = "↓"
         
+        
         countLabel.accessibilityIdentifier = R.id.GameView_count.rawValue
         countLabel.textAlignment = .center
-        countLabel.text = String(count)
+        setCount()
         
         goalLabel.accessibilityIdentifier = R.id.GameView_goalTitle.rawValue
         goalLabel.textAlignment = .center
         goalLabel.text = titleGoal
+        
     }
     
     private func constraintSubviews() {
-        headerView.constrainHeight(constant: 200)
         headerView.constrainTop(to: .Top, of: view)
         headerView.constrainLeft(to: .Left, of: view)
         headerView.constrainRight(to: .Right, of: view)
         
-        startLabel.constrainTop(to: .Top, of: headerView, constant: 50)
         startLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
         startLabel.constrainRight(to: .Right, of: headerView, constant: -20)
+        startLabel.constrainBottom(to: .Top, of: arrowLabel, constant: -5)
         
         arrowLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
         arrowLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
@@ -102,6 +106,7 @@ class WikipediaGameViewController: UIViewController {
         countLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
         countLabel.constrainRight(to: .Right, of: headerView, constant: -20)
         
+        goalLabel.constrainTop(to: .Bottom, of: arrowLabel, constant: 5)
         goalLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
         goalLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
         goalLabel.constrainRight(to: .Right, of: headerView, constant: -20)
@@ -110,6 +115,11 @@ class WikipediaGameViewController: UIViewController {
         webView.constrainBottom(to: .Bottom, of: view)
         webView.constrainLeft(to: .Left, of: view)
         webView.constrainRight(to: .Right, of: view)
+        
+        indicator.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        indicator.constrainBottom(to: .Bottom, of: view)
+        indicator.constrainRight(to: .Right, of: view)
+        indicator.constrainLeft(to: .Left, of: view)
     }
     
     private func styleSubviews() {
@@ -141,7 +151,8 @@ class WikipediaGameViewController: UIViewController {
 
     }
     
-    private func getPageInfo(targetTitle: String) {
+    private func getPageInfo(targetTitle: String, isFirst: Bool = false) {
+        indicator.startAnimating()
         wikipediaRepository.getPageInfo(title: targetTitle)
             .onSuccess(futureExecuteContext) { [weak self] result in
                 guard let weakSelf = self else {
@@ -150,15 +161,30 @@ class WikipediaGameViewController: UIViewController {
                 let page = result.query.pages.first!
                 let content = page.value.revisions.first!.content
                 weakSelf.webView.loadHTMLString(content, baseURL: nil)
+                
+                if !isFirst {
+                    weakSelf.addCount()
+                }
             }
             .onFailure(callback: { error in
                 print("\(error.localizedDescription)")
             })
+            .onComplete(futureExecuteContext) { [weak self] _ in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                weakSelf.indicator.stopAnimating()
+            }
     }
     
     private func addCount() {
         count += 1
-        countLabel.text = String(count)
+         setCount()
+    }
+    
+    private func setCount() {
+        countLabel.text = "Score: \(count)"
     }
 }
 
@@ -180,8 +206,7 @@ extension WikipediaGameViewController: WKNavigationDelegate {
         let targetUrl = "/wiki/"
         if url.absoluteString.hasPrefix(targetUrl){
             let targetTitle = String(url.absoluteString.dropFirst(targetUrl.count))
-            
-            addCount()
+
             getPageInfo(targetTitle: targetTitle)
         }
             decisionHandler(.cancel)
