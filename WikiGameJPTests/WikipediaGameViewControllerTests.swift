@@ -49,6 +49,9 @@ class WikipediaGameViewControllerTests: XCTestCase {
         verify(mockWikipediaRepository.getPageInfo(title: titleStart)).wasCalled()
         expect(startLabel?.text).toEventually(equal(titleStart))
         expect(goalLabel?.text).toEventually(equal(titleGoal))
+        
+        let currentLabel = subject.view.findLabel(withId: R.id.GameView_currentTitle.rawValue)
+        expect(currentLabel?.text).toEventually(equal("fake-title"))
     }
     
     func test_addCount_when_tapped_link() {

@@ -204,6 +204,15 @@ class MainViewController: UIViewController {
                 )
                 , on: nc)
         }
+//        if let nc = navigationController
+//        {
+//            router.pushViewController(
+//                WikipediaGoalViewController(
+//                    router: router,
+//                    score: 1
+//                )
+//                , on: nc)
+//        }
     }
 }
 

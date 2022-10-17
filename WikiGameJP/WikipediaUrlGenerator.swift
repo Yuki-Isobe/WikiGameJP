@@ -23,6 +23,7 @@ class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
         var url = basePath
         url.append(query)
         url.append(title.urlEncoded)
+        url.append("&redirects")
         
         return url
     }

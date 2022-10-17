@@ -22,7 +22,7 @@ class WikipediaUrlGeneratorTests: XCTestCase {
         let title = "fake-title"
         
         let actual = subject.generateGetPageInfoUrl(title: title)
-        let expectUrl = "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvparse=1&titles=fake-title"
+        let expectUrl = "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvparse=1&titles=fake-title&redirects"
         
         expect(actual).to(equal(expectUrl))
     }

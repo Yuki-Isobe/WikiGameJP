@@ -8,6 +8,7 @@ enum R {
         case MainView_gameStartButton
         case GameView_startTitle
         case GameView_goalTitle
+        case GameView_currentTitle
         case GameView_count
         case GameView_Indicator
         case GoalView_score

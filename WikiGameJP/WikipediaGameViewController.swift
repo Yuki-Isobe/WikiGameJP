@@ -9,10 +9,11 @@ class WikipediaGameViewController: UIViewController {
     private let router: Router
     private let wikipediaRepository: WikipediaRepository
     
-    private let titleStart: String
-    private let titleGoal: String
+    private let startTitle: String
+    private let goalTitle: String
     private var count: Int = 0
     
+    private let currentLabel = UILabel()
     private let startLabel = UILabel()
     private let arrowLabel = UILabel()
     private let scoreLabel = UILabel()
@@ -22,6 +23,7 @@ class WikipediaGameViewController: UIViewController {
     private let indicator = UIActivityIndicatorView()
     
     private let headerView = UIView()
+    private let footerView = UIView()
     private var webView: WKWebView!
     
     init(
@@ -35,8 +37,8 @@ class WikipediaGameViewController: UIViewController {
         self.wikipediaRepository = wikipediaRepository
         self.futureExecuteContext = futureExecutionContext
 
-        self.titleStart = titleStart
-        self.titleGoal = titleGoal
+        self.startTitle = titleStart
+        self.goalTitle = titleGoal
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,7 +51,6 @@ class WikipediaGameViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
-        view.backgroundColor = .white
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: self.view.frame, configuration: webConfiguration)
@@ -60,24 +61,36 @@ class WikipediaGameViewController: UIViewController {
         constraintSubviews()
         styleSubviews()
                 
-        getPageInfo(targetTitle: titleStart, isFirst: true)
+        getPageInfo(targetTitle: startTitle, isFirst: true)
     }
     
     private func addSubviews() {
         view.addSubview(headerView)
-        headerView.addSubview(startLabel)
-        headerView.addSubview(arrowLabel)
-        headerView.addSubview(scoreLabel)
-        headerView.addSubview(countLabel)
-        headerView.addSubview(goalLabel)
+        headerView.addSubview(currentLabel)
         view.addSubview(webView)
+        view.addSubview(footerView)
+        footerView.addSubview(startLabel)
+        footerView.addSubview(arrowLabel)
+        footerView.addSubview(scoreLabel)
+        footerView.addSubview(countLabel)
+        footerView.addSubview(goalLabel)
         view.addSubview(indicator)
+        
+        
+        // 現在ページ
+        // WebView
+        // 今のヘッダ
+        // の順番で配置する
     }
     
     private func configSubviews() {
+        view.backgroundColor = .white
+        
+        currentLabel.accessibilityIdentifier = R.id.GameView_currentTitle.rawValue
+        
         startLabel.accessibilityIdentifier = R.id.GameView_startTitle.rawValue
         startLabel.textAlignment = .center
-        startLabel.text = titleStart
+        startLabel.text = startTitle
         
         arrowLabel.textAlignment = .center
         arrowLabel.text = "↓"
@@ -91,38 +104,51 @@ class WikipediaGameViewController: UIViewController {
         
         goalLabel.accessibilityIdentifier = R.id.GameView_goalTitle.rawValue
         goalLabel.textAlignment = .center
-        goalLabel.text = titleGoal
+        goalLabel.text = goalTitle
         
     }
     
     private func constraintSubviews() {
         headerView.constrainTop(to: .Top, of: view)
+        headerView.constrainBottom(to: .Top, of: webView)
         headerView.constrainLeft(to: .Left, of: view)
         headerView.constrainRight(to: .Right, of: view)
         
-        startLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
-        startLabel.constrainRight(to: .Right, of: headerView, constant: -20)
-        startLabel.constrainBottom(to: .Top, of: arrowLabel, constant: -5)
+        currentLabel.constrainTop(to: .Top, of: headerView, constant: 50)
+        currentLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
+        currentLabel.constrainXCenter(to: .CenterXAnchor, of: headerView)
         
-        arrowLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
-        arrowLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
-        
-        countLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
-        countLabel.constrainRight(to: .Right, of: headerView, constant: -20)
-        
-        scoreLabel.constrainYCenter(to: .CenterYAnchor, of: headerView, constant: 20)
-        scoreLabel.constrainRight(to: .Left, of: countLabel, constant: -10)
-        
-        goalLabel.constrainTop(to: .Bottom, of: arrowLabel, constant: 5)
-        goalLabel.constrainBottom(to: .Bottom, of: headerView, constant: -10)
-        goalLabel.constrainLeft(to: .Left, of: headerView, constant: 20)
-        goalLabel.constrainRight(to: .Right, of: headerView, constant: -20)
-        
-        webView.constrainTop(to: .Bottom, of: headerView, constant: 1)
-        webView.constrainBottom(to: .Bottom, of: view)
+        webView.constrainTop(to: .Bottom, of: headerView)
+        webView.constrainBottom(to: .Top, of: footerView)
         webView.constrainLeft(to: .Left, of: view)
         webView.constrainRight(to: .Right, of: view)
         
+        footerView.constrainTop(to: .Bottom, of: webView)
+        footerView.constrainBottom(to: .Bottom, of: view)
+        footerView.constrainLeft(to: .Left, of: view)
+        footerView.constrainRight(to: .Right, of: view)
+
+        startLabel.constrainTop(to: .Top, of: footerView, constant: 10)
+        startLabel.constrainLeft(to: .Left, of: footerView, constant: 20)
+        startLabel.constrainRight(to: .Right, of: footerView, constant: -20)
+
+        arrowLabel.constrainTop(to: .Bottom, of: startLabel, constant: 10)
+        arrowLabel.constrainBottom(to: .Top, of: goalLabel, constant: -10)
+        arrowLabel.constrainLeft(to: .Left, of: footerView, constant: 20)
+
+        countLabel.constrainTop(to: .Bottom, of: startLabel, constant: 10)
+        countLabel.constrainBottom(to: .Top, of: goalLabel, constant: -10)
+        countLabel.constrainRight(to: .Right, of: footerView, constant: -20)
+
+        scoreLabel.constrainTop(to: .Bottom, of: startLabel, constant: 10)
+        scoreLabel.constrainBottom(to: .Top, of: goalLabel, constant: -10)
+        scoreLabel.constrainRight(to: .Left, of: countLabel, constant: -10)
+
+        goalLabel.constrainTop(to: .Bottom, of: arrowLabel)
+        goalLabel.constrainBottom(to: .Bottom, of: footerView, constant: -20)
+        goalLabel.constrainLeft(to: .Left, of: footerView, constant: 20)
+        goalLabel.constrainRight(to: .Right, of: footerView, constant: -20)
+
         indicator.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
         indicator.constrainBottom(to: .Bottom, of: view)
         indicator.constrainRight(to: .Right, of: view)
@@ -130,11 +156,19 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func styleSubviews() {
-        let headerColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
+        let viewColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
         let labelFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
         let labelColor = UIColor.white
+        let scoreColor = UIColor(red: 0.96, green: 0.82, blue: 0.25, alpha: 1.00)
         
-        headerView.backgroundColor = headerColor
+        headerView.backgroundColor = viewColor
+        footerView.backgroundColor = viewColor
+        
+        currentLabel.font = labelFont
+        currentLabel.textColor = labelColor
+        currentLabel.adjustsFontSizeToFitWidth = true
+        currentLabel.minimumScaleFactor = 0.2
+        currentLabel.numberOfLines = 3
         
         startLabel.font = labelFont
         startLabel.textColor = labelColor
@@ -147,10 +181,10 @@ class WikipediaGameViewController: UIViewController {
         arrowLabel.textColor = labelColor
         
         scoreLabel.font = labelFont
-        scoreLabel.textColor = labelColor
+        scoreLabel.textColor = scoreColor
         
         countLabel.font = labelFont
-        countLabel.textColor = labelColor
+        countLabel.textColor = scoreColor
 
         goalLabel.font = labelFont
         goalLabel.textColor = labelColor
@@ -169,8 +203,11 @@ class WikipediaGameViewController: UIViewController {
                     return
                 }
                 let page = result.query.pages.first!
+                let title = page.value.title
                 let content = page.value.revisions.first!.content
                 weakSelf.webView.loadHTMLString(content, baseURL: nil)
+                
+                weakSelf.currentLabel.text = title
                 
                 if !isFirst {
                     weakSelf.addCount()
@@ -216,8 +253,25 @@ extension WikipediaGameViewController: WKNavigationDelegate {
         let targetUrl = "/wiki/"
         if url.absoluteString.hasPrefix(targetUrl){
             let targetTitle = String(url.absoluteString.dropFirst(targetUrl.count))
-
-            getPageInfo(targetTitle: targetTitle)
+            
+            guard let decodedTitle = targetTitle.removingPercentEncoding else {
+                decisionHandler(.cancel)
+                return
+            }
+            
+            if decodedTitle == goalTitle {
+                if let nc = navigationController
+                {
+                    router.pushViewController(
+                        WikipediaGoalViewController(
+                            router: router,
+                            score: count
+                        )
+                        , on: nc)
+                }
+            } else {
+                getPageInfo(targetTitle: decodedTitle)
+            }
         }
             decisionHandler(.cancel)
         
