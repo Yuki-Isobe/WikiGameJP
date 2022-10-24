@@ -6,6 +6,7 @@ class WikipediaGoalViewController: UIViewController {
     private let score: Int
     
     private let scoreLabel = UILabel()
+    private let retryButton = UIButton()
     
     init(
         router: Router,
@@ -35,6 +36,7 @@ class WikipediaGoalViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(scoreLabel)
+        view.addSubview(retryButton)
     }
     
     private func configSubviews() {
@@ -42,11 +44,18 @@ class WikipediaGoalViewController: UIViewController {
         
         scoreLabel.accessibilityIdentifier = R.id.GoalView_score.rawValue
         scoreLabel.text = String(score)
+        
+        retryButton.accessibilityIdentifier = R.id.GoalView_retryButton.rawValue
+        retryButton.setTitle("もう一度遊ぶ", for: .normal)
+        retryButton.addTarget(self, action: #selector(tappedRetryButton), for: .touchUpInside)
     }
     
     private func constraintSubviews() {
         scoreLabel.constrainXCenter(to: .CenterXAnchor, of: view)
         scoreLabel.constrainYCenter(to: .CenterYAnchor, of: view)
+        
+        retryButton.constrainBottom(to: .Bottom, of: view)
+        retryButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
@@ -55,5 +64,13 @@ class WikipediaGoalViewController: UIViewController {
         
         scoreLabel.font = mainFont
         scoreLabel.textColor = mainColor
+    }
+    
+    @objc func tappedRetryButton() {
+        if let nc = navigationController
+        {
+            router.pushViewController(
+                MainViewController(router: router), on: nc)
+        }
     }
 }

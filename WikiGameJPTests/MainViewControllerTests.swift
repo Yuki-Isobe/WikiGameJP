@@ -107,11 +107,17 @@ class MainViewControllerTests: XCTestCase {
         
         _ = subject.view
         
+        let startLabel = subject.view.findLabel(withId: R.id.MainView_startTitle.rawValue)
+        let goalLabel = subject.view.findLabel(withId: R.id.MainView_goalTitle.rawValue)
+        expect(startLabel?.text).toEventually(equal(startTitle))
+        expect(goalLabel?.text).to(equal("fake-title-2"))
+        
+        
         let gameStartButton = subject.view.findButton(withId: R.id.MainView_gameStartButton.rawValue)
         
         gameStartButton?.tap()
-        
-//  UINavigationControllerがnilになる？
-//        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(WikipediaGameViewController.self))
+        subject.view.layoutIfNeeded()
+
+        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(WikipediaGameViewController.self))
     }
 }

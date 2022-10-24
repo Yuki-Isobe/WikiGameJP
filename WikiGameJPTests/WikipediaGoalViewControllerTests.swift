@@ -7,6 +7,8 @@ class WikipediaGoalViewControllerTests: XCTestCase {
     var subject: WikipediaGoalViewController!
     
     private var routerSpy: NavigationRouterSpy!
+
+    let navigationController = UINavigationController()
     
     override func setUp() {
         super.setUp()
@@ -24,10 +26,28 @@ class WikipediaGoalViewControllerTests: XCTestCase {
         expect(scoreLabel?.text).to(equal(String(score)))
     }
     
-    private func initSubject(score: Int) {
+    func test_tapRetryButton() {
+        initSubject()
+
+        _ = subject.view
+        subject.view.layoutIfNeeded()
+        
+        let retryButton = subject.view.findButton(withId: R.id.GoalView_retryButton.rawValue)
+        
+        retryButton?.tap()
+        subject.view.layoutIfNeeded()
+
+        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(MainViewController.self))
+    }
+    
+    private func initSubject(score: Int = 0) {
         subject = WikipediaGoalViewController(
             router: routerSpy,
             score: score
         )
+
+        navigationController.viewControllers = [
+            subject
+        ]
     }
 }
