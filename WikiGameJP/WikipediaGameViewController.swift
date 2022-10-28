@@ -259,8 +259,8 @@ extension WikipediaGameViewController: WKNavigationDelegate {
                 return
             }
             
-//            if decodedTitle == goalTitle {
-            if decodedTitle != goalTitle {
+            if decodedTitle == goalTitle {
+//            if decodedTitle != goalTitle {
                 if let nc = navigationController
                 {
                     router.pushViewController(

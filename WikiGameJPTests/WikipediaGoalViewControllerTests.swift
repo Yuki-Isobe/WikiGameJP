@@ -2,6 +2,7 @@ import XCTest
 import Nimble
 @testable import WikiGameJP
 import CloudKit
+import Mockingbird
 
 class WikipediaGoalViewControllerTests: XCTestCase {
     var subject: WikipediaGoalViewController!
@@ -33,11 +34,12 @@ class WikipediaGoalViewControllerTests: XCTestCase {
         subject.view.layoutIfNeeded()
         
         let retryButton = subject.view.findButton(withId: R.id.GoalView_retryButton.rawValue)
+
+        expect(self.routerSpy.popToRootViewControllerCallCount).to(equal(0))
         
         retryButton?.tap()
-        subject.view.layoutIfNeeded()
-
-        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(MainViewController.self))
+        
+        expect(self.routerSpy.popToRootViewControllerCallCount).to(equal(1))
     }
     
     private func initSubject(score: Int = 0) {

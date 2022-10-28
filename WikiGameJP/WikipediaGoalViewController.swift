@@ -55,6 +55,7 @@ class WikipediaGoalViewController: UIViewController {
         scoreLabel.constrainYCenter(to: .CenterYAnchor, of: view)
         
         retryButton.constrainBottom(to: .Bottom, of: view)
+        retryButton.constrainHeight(constant: 50)
         retryButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
@@ -64,13 +65,13 @@ class WikipediaGoalViewController: UIViewController {
         
         scoreLabel.font = mainFont
         scoreLabel.textColor = mainColor
+        
+        retryButton.backgroundColor = .blue
     }
     
     @objc func tappedRetryButton() {
-        if let nc = navigationController
-        {
-            router.pushViewController(
-                MainViewController(router: router), on: nc)
+        if let nc = navigationController {
+            router.popToRootViewController(navigationController: nc)
         }
     }
 }

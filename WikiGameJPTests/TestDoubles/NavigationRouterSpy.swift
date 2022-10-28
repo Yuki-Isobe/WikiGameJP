@@ -16,6 +16,12 @@ class NavigationRouterSpy: Router {
 
     func popViewController(navigationController: UINavigationController?) {
     }
+    
+    private(set) var popToRootViewControllerCallCount = 0
+    
+    func popToRootViewController(navigationController: UINavigationController) {
+        popToRootViewControllerCallCount += 1
+    }
 
     var dismissModal_args: UIViewController?
 
@@ -27,9 +33,6 @@ class NavigationRouterSpy: Router {
 
     func buildRootNavigationController(rootVC viewController: UIViewController) -> UINavigationController {
         fatalError("buildRootNavigationController(rootVC:) has not been implemented")
-    }
-
-    func popToRootViewController(navigationController: UINavigationController) {
     }
 
     private(set) var present_args: (viewController: UIViewController?, fromViewController: UIViewController?)
