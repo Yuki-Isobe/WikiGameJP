@@ -12,6 +12,8 @@ enum R {
         case GameView_count
         case GameView_Indicator
         case GoalView_score
+        case GoalView_startTitle
+        case GoalView_goalTitle
         case GoalView_retryButton
     }
 }

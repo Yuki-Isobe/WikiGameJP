@@ -17,11 +17,25 @@ class WikipediaGoalViewControllerTests: XCTestCase {
         routerSpy = NavigationRouterSpy()
     }
     
-    func test_viewDidLoad_showScore() {
+    func test_viewDidLoad() {
         let score = 123
+        let startTitle = "fake-start-title"
+        let goalTitle = "fake-goal-title"
         
-        initSubject(score: score)
+        initSubject(
+            score: score,
+            startTitle: startTitle,
+            goaltitle: goalTitle
+        )
+
         _ = subject.view
+        subject.view.layoutIfNeeded()
+        
+        let startLabel = subject.view.findLabel(withId: R.id.GoalView_startTitle.rawValue)
+        expect(startLabel?.text).toEventually(equal(startTitle))
+        
+        let goalLabel = subject.view.findLabel(withId: R.id.GoalView_goalTitle.rawValue)
+        expect(goalLabel?.text).to(equal(goalTitle))
         
         let scoreLabel = subject.view.findLabel(withId: R.id.GoalView_score.rawValue)
         expect(scoreLabel?.text).to(equal(String(score)))
@@ -42,9 +56,15 @@ class WikipediaGoalViewControllerTests: XCTestCase {
         expect(self.routerSpy.popToRootViewControllerCallCount).to(equal(1))
     }
     
-    private func initSubject(score: Int = 0) {
+    private func initSubject(
+        score: Int = 0,
+        startTitle: String = "",
+        goaltitle: String = ""
+    ) {
         subject = WikipediaGoalViewController(
             router: routerSpy,
+            startTitle: startTitle,
+            goalTitle: goaltitle,
             score: score
         )
 

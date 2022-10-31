@@ -76,11 +76,6 @@ class WikipediaGameViewController: UIViewController {
         footerView.addSubview(goalLabel)
         view.addSubview(indicator)
         
-        
-        // 現在ページ
-        // WebView
-        // 今のヘッダ
-        // の順番で配置する
     }
     
     private func configSubviews() {
@@ -227,7 +222,13 @@ class WikipediaGameViewController: UIViewController {
     
     private func addCount() {
         count += 1
-         setCount()
+        
+        if count > 3 {
+            sendGoal()
+            return
+        }
+        
+        setCount()
     }
     
     private func setCount() {
@@ -266,6 +267,8 @@ extension WikipediaGameViewController: WKNavigationDelegate {
                     router.pushViewController(
                         WikipediaGoalViewController(
                             router: router,
+                            startTitle: startTitle,
+                            goalTitle: goalTitle,
                             score: count
                         )
                         , on: nc)
@@ -285,5 +288,19 @@ extension WikipediaGameViewController: WKNavigationDelegate {
             webView.load(navigationAction.request)
         }
         return nil
+    }
+    
+    private func sendGoal() {
+        if let nc = navigationController
+        {
+            router.pushViewController(
+                WikipediaGoalViewController(
+                    router: router,
+                    startTitle: startTitle,
+                    goalTitle: goalTitle,
+                    score: count
+                )
+                , on: nc)
+        }
     }
 }
