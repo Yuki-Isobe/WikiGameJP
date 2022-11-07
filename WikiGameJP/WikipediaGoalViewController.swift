@@ -9,8 +9,9 @@ class WikipediaGoalViewController: UIViewController {
     
     private let headerLabel = UILabel()
     private let startLabel = UILabel()
-    private let arrowLabel = UILabel()
+    private let startSubLabel = UILabel()
     private let goalLabel = UILabel()
+    private let goalSubLabel = UILabel()
     private let scoreView = UIView()
     private let scoreHeaderLabel = UILabel()
     private let scoreLabel = UILabel()
@@ -48,8 +49,9 @@ class WikipediaGoalViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(headerLabel)
         view.addSubview(startLabel)
-        view.addSubview(arrowLabel)
+        view.addSubview(startSubLabel)
         view.addSubview(goalLabel)
+        view.addSubview(goalSubLabel)
         view.addSubview(scoreView)
         scoreView.addSubview(scoreHeaderLabel)
         scoreView.addSubview(scoreLabel)
@@ -65,13 +67,15 @@ class WikipediaGoalViewController: UIViewController {
         startLabel.textAlignment = .center
         startLabel.text = startTitle
         
-        arrowLabel.text = "↓"
+        startSubLabel.text = "から"
         
         goalLabel.accessibilityIdentifier = R.id.GoalView_goalTitle.rawValue
         goalLabel.textAlignment = .center
         goalLabel.text = goalTitle
         
-        scoreHeaderLabel.text = "スコア:"
+        goalSubLabel.text = "まで"
+        
+        scoreHeaderLabel.text = "Score:"
         
         scoreLabel.accessibilityIdentifier = R.id.GoalView_score.rawValue
         scoreLabel.text = String(score)
@@ -79,6 +83,7 @@ class WikipediaGoalViewController: UIViewController {
         retryButton.accessibilityIdentifier = R.id.GoalView_retryButton.rawValue
         retryButton.setTitle("もう一度遊ぶ", for: .normal)
         retryButton.addTarget(self, action: #selector(tappedRetryButton), for: .touchUpInside)
+        retryButton.layer.cornerRadius = 10
     }
     
     private func constraintSubviews() {
@@ -89,16 +94,20 @@ class WikipediaGoalViewController: UIViewController {
         startLabel.constrainRight(to: .Right, of: view, constant: -20)
         startLabel.constrainLeft(to: .Left, of: view, constant: 20)
         
-        arrowLabel.constrainTop(to: .Bottom, of: startLabel, constant: 10)
-        arrowLabel.constrainBottom(to: .Top, of: goalLabel, constant: -10)
-        arrowLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        startSubLabel.constrainTop(to: .Bottom, of: startLabel, constant: 10)
+        startSubLabel.constrainBottom(to: .Top, of: goalLabel, constant: -10)
+        startSubLabel.constrainXCenter(to: .CenterXAnchor, of: view)
         
-        goalLabel.constrainTop(to: .Bottom, of: arrowLabel)
-        goalLabel.constrainBottom(to: .Top, of: scoreView)
-        goalLabel.constrainRight(to: .Right, of: view, constant: -20)
-        goalLabel.constrainLeft(to: .Left, of: view, constant: 20)
+        goalLabel.constrainTop(to: .Bottom, of: startSubLabel)
+        goalLabel.constrainBottom(to: .Top, of: goalSubLabel)
+        goalLabel.constrainRight(to: .Right, of: view, constant: -10)
+        goalLabel.constrainLeft(to: .Left, of: view, constant: 10)
         
-        scoreView.constrainTop(to: .Bottom, of: goalLabel)
+        goalSubLabel.constrainTop(to: .Bottom, of: goalLabel, constant: 10)
+        goalSubLabel.constrainBottom(to: .Top, of: scoreView, constant: -20)
+        goalSubLabel.constrainXCenter(to: .CenterXAnchor, of: view)
+        
+        scoreView.constrainTop(to: .Bottom, of: goalSubLabel)
         scoreView.constrainBottom(to: .Top, of: retryButton)
         scoreView.constrainXCenter(to: .CenterXAnchor, of: view)
         
@@ -113,14 +122,18 @@ class WikipediaGoalViewController: UIViewController {
         scoreLabel.constrainLeft(to: .Right, of: scoreHeaderLabel)
         
         retryButton.constrainTop(to: .Bottom, of: scoreView)
-        retryButton.constrainHeight(constant: 50)
+        retryButton.constrainWidth(constant: 185)
+        retryButton.constrainHeight(constant: 75)
         retryButton.constrainXCenter(to: .CenterXAnchor, of: view)
     }
     
     private func styleSubviews() {
         let mainFont = UIFont.systemFont(ofSize: 40, weight: .heavy)
         let subFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        let buttonFont = UIFont.systemFont(ofSize: 30, weight: .heavy)
         let mainColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
+        let scoreColor = UIColor(red: 0.96, green: 0.82, blue: 0.25, alpha: 1.00)
+        let buttonColor = UIColor(red: 0.24, green: 0.63, blue: 0.33, alpha: 1.00)
         
         headerLabel.font = mainFont
         
@@ -129,17 +142,24 @@ class WikipediaGoalViewController: UIViewController {
         startLabel.minimumScaleFactor = 0.3
         startLabel.numberOfLines = 4
         
-        arrowLabel.font = subFont
+        startSubLabel.font = subFont
         
         goalLabel.font = mainFont
         goalLabel.adjustsFontSizeToFitWidth = true
         goalLabel.minimumScaleFactor = 0.3
         goalLabel.numberOfLines = 4
         
-        scoreLabel.font = mainFont
-        scoreLabel.textColor = mainColor
+        goalSubLabel.font = subFont
         
-        retryButton.backgroundColor = .blue
+        scoreHeaderLabel.font = subFont
+        scoreHeaderLabel.textColor = scoreColor
+        
+        scoreLabel.font = mainFont
+        scoreLabel.textColor = scoreColor
+        
+        retryButton.titleLabel?.font = buttonFont
+        retryButton.backgroundColor = buttonColor
+        retryButton.setTitleColor(.white, for: .normal)
     }
     
     @objc func tappedRetryButton() {
