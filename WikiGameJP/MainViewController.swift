@@ -146,29 +146,26 @@ class MainViewController: UIViewController {
         let mainFont = UIFont.systemFont(ofSize: 40, weight: .heavy)
         let subFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
         let buttonFont = UIFont.systemFont(ofSize: 30, weight: .heavy)
-        let mainColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
-        let subColor = UIColor(red: 0.24, green: 0.34, blue: 0.36, alpha: 1.00)
-        let startButtonColor = UIColor(red: 0.24, green: 0.63, blue: 0.33, alpha: 1.00)
         let buttonsTintColor = UIColor(red: 0.55, green: 0.57, blue: 0.55, alpha: 1.00)
         let buttonsBackgroundColor = UIColor(red: 0.90, green: 0.89, blue: 0.89, alpha: 1.00)
         
         startLabel.font = mainFont
-        startLabel.textColor = mainColor
+        startLabel.textColor = primaryDark
         startLabel.adjustsFontSizeToFitWidth = true
         startLabel.minimumScaleFactor = 0.3
         startLabel.numberOfLines = 4
         
         startSubLabel.font = subFont
-        startSubLabel.textColor = subColor
+        startSubLabel.textColor = primaryBase
 
         goalLabel.font = mainFont
-        goalLabel.textColor = mainColor
+        goalLabel.textColor = primaryDark
         goalLabel.adjustsFontSizeToFitWidth = true
         goalLabel.minimumScaleFactor = 0.3
         goalLabel.numberOfLines = 4
         
         goalSubLabel.font = subFont
-        goalSubLabel.textColor = subColor
+        goalSubLabel.textColor = primaryBase
         
         titleSwapButton.imageView?.tintColor = buttonsTintColor
         titleSwapButton.backgroundColor = buttonsBackgroundColor
@@ -177,8 +174,8 @@ class MainViewController: UIViewController {
         titleReloadButton.backgroundColor = buttonsBackgroundColor
         
         gameStartButton.titleLabel?.font = buttonFont
-        gameStartButton.backgroundColor = startButtonColor
-        gameStartButton.setTitleColor(.white, for: .normal)
+        gameStartButton.backgroundColor = primary
+        gameStartButton.setTitleColor(secondaryBase, for: .normal)
     }
     
     @objc func tappedTitleSwapButton() {

@@ -151,38 +151,35 @@ class WikipediaGameViewController: UIViewController {
     }
     
     private func styleSubviews() {
-        let viewColor = UIColor(red: 0.52, green: 0.73, blue: 0.40, alpha: 1.00)
         let labelFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        let labelColor = UIColor.white
-        let scoreColor = UIColor(red: 0.96, green: 0.82, blue: 0.25, alpha: 1.00)
         
-        headerView.backgroundColor = viewColor
-        footerView.backgroundColor = viewColor
+        headerView.backgroundColor = primary
+        footerView.backgroundColor = primary
         
         currentLabel.font = labelFont
-        currentLabel.textColor = labelColor
+        currentLabel.textColor = secondaryBase
         currentLabel.adjustsFontSizeToFitWidth = true
         currentLabel.minimumScaleFactor = 0.2
         currentLabel.numberOfLines = 3
         
         startLabel.font = labelFont
-        startLabel.textColor = labelColor
+        startLabel.textColor = secondaryBase
         startLabel.adjustsFontSizeToFitWidth = true
         startLabel.minimumScaleFactor = 0.2
         startLabel.numberOfLines = 3
         startLabel.textAlignment = .left
         
         arrowLabel.font = labelFont
-        arrowLabel.textColor = labelColor
+        arrowLabel.textColor = secondaryBase
         
         scoreLabel.font = labelFont
-        scoreLabel.textColor = scoreColor
+        scoreLabel.textColor = secondaryBase
         
         countLabel.font = labelFont
-        countLabel.textColor = scoreColor
+        countLabel.textColor = secondaryBase
 
         goalLabel.font = labelFont
-        goalLabel.textColor = labelColor
+        goalLabel.textColor = secondaryBase
         goalLabel.adjustsFontSizeToFitWidth = true
         goalLabel.minimumScaleFactor = 0.2
         goalLabel.numberOfLines = 3
@@ -260,8 +257,8 @@ extension WikipediaGameViewController: WKNavigationDelegate {
                 return
             }
             
-//            if decodedTitle == goalTitle {
-            if decodedTitle != goalTitle {
+            if decodedTitle == goalTitle {
+//            if decodedTitle != goalTitle {
                 if let nc = navigationController
                 {
                     router.pushViewController(
