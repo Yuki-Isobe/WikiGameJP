@@ -219,12 +219,6 @@ class WikipediaGameViewController: UIViewController {
     
     private func addCount() {
         count += 1
-        
-        if count > 3 {
-            sendGoal()
-            return
-        }
-        
         setCount()
     }
     
@@ -257,7 +251,10 @@ extension WikipediaGameViewController: WKNavigationDelegate {
                 return
             }
             
-            if decodedTitle == goalTitle {
+            let replacedTitle = decodedTitle.replacingOccurrences(of: "_", with: " ")
+            
+            print("decode: \(decodedTitle), replace: \(replacedTitle), goal: \(goalTitle)")
+            if replacedTitle == goalTitle {
                 if let nc = navigationController
                 {
                     router.pushViewController(

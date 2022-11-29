@@ -201,21 +201,5 @@ class MainViewController: UIViewController {
                 )
                 , on: nc)
         }
-//        if let nc = navigationController,
-//           let titleStart = startLabel.text,
-//           let titleGoal = goalLabel.text
-//        {
-//            let test = "ああああああああああいいいいいいいいいいううううううううううえええええええええええおおおおおおおおおお１２３４５６７８"
-//
-//            router.pushViewController(
-//                WikipediaGoalViewController(
-//                    router: router,
-//                    startTitle: test,
-//                    goalTitle: test,
-//                    score: 3
-//                )
-//                , on: nc)
-//        }
     }
 }
-
