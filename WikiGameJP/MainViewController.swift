@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     private let goalLabel = UILabel()
     private let goalSubLabel = UILabel()
     
+    private let titleEditButton = UIButton()
     private let titleSwapButton = UIButton()
     private let titleReloadButton = UIButton()
     
@@ -70,6 +71,7 @@ class MainViewController: UIViewController {
         view.addSubview(goalLabel)
         view.addSubview(goalSubLabel)
         
+        view.addSubview(titleEditButton)
         view.addSubview(titleSwapButton)
         view.addSubview(titleReloadButton)
         
@@ -92,6 +94,11 @@ class MainViewController: UIViewController {
         
         goalSubLabel.textAlignment = .center
         goalSubLabel.text = "まで"
+        
+        titleEditButton.accessibilityIdentifier = R.id.MainView_titleEditButton.rawValue
+        titleEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+        titleEditButton.addTarget(self, action: #selector(tappedTitleEditButton), for: .touchUpInside)
+        titleEditButton.layer.cornerRadius = 25
         
         titleSwapButton.accessibilityIdentifier = R.id.MainView_titleSwapButton.rawValue
         titleSwapButton.setImage(UIImage(systemName: "arrow.up.arrow.down"), for: .normal)
@@ -130,6 +137,11 @@ class MainViewController: UIViewController {
         titleSwapButton.constrainWidth(constant: 50)
         titleSwapButton.constrainTop(to: .Bottom, of: startSubLabel, constant: 10)
         titleSwapButton.constrainLeft(to: .Left, of: view, constant: 20)
+        
+        titleEditButton.constrainHeight(constant: 50)
+        titleEditButton.constrainWidth(constant: 50)
+        titleEditButton.constrainTop(to: .Bottom, of: startSubLabel, constant: 10)
+        titleEditButton.constrainXCenter(to: .CenterXAnchor, of: view)
 
         titleReloadButton.constrainHeight(constant: 50)
         titleReloadButton.constrainWidth(constant: 50)
@@ -166,6 +178,9 @@ class MainViewController: UIViewController {
         
         goalSubLabel.font = subFont
         goalSubLabel.textColor = primaryBase
+
+        titleEditButton.imageView?.tintColor = buttonsTintColor
+        titleEditButton.backgroundColor = buttonsBackgroundColor
         
         titleSwapButton.imageView?.tintColor = buttonsTintColor
         titleSwapButton.backgroundColor = buttonsBackgroundColor
@@ -176,6 +191,32 @@ class MainViewController: UIViewController {
         gameStartButton.titleLabel?.font = buttonFont
         gameStartButton.backgroundColor = primary
         gameStartButton.setTitleColor(secondaryBase, for: .normal)
+    }
+    
+    @objc func tappedTitleEditButton() {
+        let dialog = UIAlertController(title: "hogehoge", message: "hoge", preferredStyle: .alert)
+        
+        dialog.addTextField(configurationHandler: nil)
+        dialog.addTextField(configurationHandler: nil)
+        
+        dialog.textFields?[0].placeholder = "Start"
+        dialog.textFields?[1].placeholder = "Goal"
+        
+        let editAction = UIAlertAction(title: "OK", style: .default, handler: { (_: UIAlertAction!) -> Void in
+            if let startText = dialog.textFields?[0].text, !startText.isEmpty {
+                self.startLabel.text = startText
+            }
+            
+            if let goalText = dialog.textFields?[1].text, !goalText.isEmpty {
+                self.goalLabel.text = goalText
+            }
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        dialog.addAction(editAction)
+        dialog.addAction(cancelAction)
+        
+        router.present(viewController: dialog, fromViewController: self , animated: true, completion: nil)
     }
     
     @objc func tappedTitleSwapButton() {

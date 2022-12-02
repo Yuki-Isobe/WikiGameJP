@@ -252,8 +252,7 @@ extension WikipediaGameViewController: WKNavigationDelegate {
             }
             
             let replacedTitle = decodedTitle.replacingOccurrences(of: "_", with: " ")
-            
-            print("decode: \(decodedTitle), replace: \(replacedTitle), goal: \(goalTitle)")
+
             if replacedTitle == goalTitle {
                 if let nc = navigationController
                 {

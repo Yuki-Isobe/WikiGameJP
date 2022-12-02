@@ -86,6 +86,17 @@ class MainViewControllerTests: XCTestCase {
         verify(mockWikipediaRepository.getTitles()).wasCalled(exactly(2))
     }
     
+    func test_tapTitleEditButton() {
+        _ = subject.view
+        
+        let titleEditButton = subject.view.findButton(withId: R.id.MainView_titleEditButton.rawValue)
+        
+        titleEditButton?.tap()
+        subject.view.layoutIfNeeded()
+        
+        expect(self.routerSpy.present_args.viewController).to(beAKindOf(UIAlertController.self))
+    }
+    
     func test_tapGameStartButton() {
         let startTitle = "fake-start-title"
         let wikipediaTitleResponce = WikipediaTitleResponseFactory.create(

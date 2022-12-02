@@ -3,6 +3,7 @@ enum R {
         // MainViewController
         case MainView_startTitle
         case MainView_goalTitle
+        case MainView_titleEditButton
         case MainView_titleSwapButton
         case MainView_titleReloadButton
         case MainView_gameStartButton
