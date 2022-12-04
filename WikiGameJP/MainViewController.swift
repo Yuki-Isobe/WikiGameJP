@@ -194,7 +194,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func tappedTitleEditButton() {
-        let dialog = UIAlertController(title: "hogehoge", message: "hoge", preferredStyle: .alert)
+        let dialog = UIAlertController(title: "編集", message: "変更する場合は入力してください", preferredStyle: .alert)
         
         dialog.addTextField(configurationHandler: nil)
         dialog.addTextField(configurationHandler: nil)
