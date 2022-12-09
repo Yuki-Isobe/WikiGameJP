@@ -9,9 +9,10 @@ struct WikipediaPageInfoQuery: Decodable, Equatable {
 }
 
 struct WikipediaPageInfo: Decodable, Equatable {
-    var pageid: Int
+    var pageid: Int?
     var title: String
-    var revisions: [WikipediaPageInfoRevision]
+    var missing: String?
+    var revisions: [WikipediaPageInfoRevision]?
 }
 
 struct WikipediaPageInfoRevision: Decodable, Equatable {

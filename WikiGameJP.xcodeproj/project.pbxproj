@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AECBBAE3033D7FF6CC41B4F /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1CBE5A7EDFF23A412A4F86 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */; };
+		ACAFC84C6CCF657ED496F043 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77768E15468EC734B98D02A4 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */; };
 		B200B1A0288CF1D800BB7874 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B19F288CF1D800BB7874 /* AppDelegate.swift */; };
 		B200B1A2288CF1D800BB7874 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */; };
 		B200B1A4288CF1D800BB7874 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200B1A3288CF1D800BB7874 /* MainViewController.swift */; };
@@ -66,7 +66,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19700AFDD6537DD287732F1D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		3F5F21454740EC1C8B3A6E05 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		5D3D5A37303339C084A4CBB2 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		5F03368767DAA50CA9636CFF /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		69BC1DFE3276FD54A1D528CF /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 		6E1CBE5A7EDFF23A412A4F86 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		771E463D7FA4D0441F0CF934 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		77768E15468EC734B98D02A4 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		8C60922E102C94E8C787A79A /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		90F4BBA2E48E76C81790933C /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 		B200B19C288CF1D800BB7874 /* WikiGameJP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiGameJP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B200B19F288CF1D800BB7874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B200B1A1288CF1D800BB7874 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +114,9 @@
 		B2C26905288E9D8900677F64 /* WikipediaTitleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponse.swift; sourceTree = "<group>"; };
 		B2C26908288E9F4300677F64 /* WikipediaTitleResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTitleResponseFactory.swift; sourceTree = "<group>"; };
 		B2EA5328288FEB4E00EF20B3 /* WikipediaUrlGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaUrlGeneratorTests.swift; sourceTree = "<group>"; };
+		CA9433219CBDF7D0CE86E97B /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		E115A6A45646DE71D74C8660 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
+		F223BB9E2834B8647436AF5D /* WikiGameJPTests-WikiGameJPMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "WikiGameJPTests-WikiGameJPMocks.generated.swift"; path = "MockingbirdMocks/WikiGameJPTests-WikiGameJPMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +151,7 @@
 		7A51BD1CBBB9FC688C322850 /* Generated Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				6E1CBE5A7EDFF23A412A4F86 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */,
+				77768E15468EC734B98D02A4 /* WikiGameJPTests-WikiGameJPMocks.generated.swift */,
 			);
 			name = "Generated Mocks";
 			sourceTree = "<group>";
@@ -493,7 +505,7 @@
 				B2C268F0288E957800677F64 /* WikipediaRepositoryTests.swift in Sources */,
 				B27FFB092892900000A1180E /* UIButtonExtensions.swift in Sources */,
 				B273E35D28BCC280006EB184 /* WikipediaPageInfoResponseFactory.swift in Sources */,
-				1AECBBAE3033D7FF6CC41B4F /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */,
+				ACAFC84C6CCF657ED496F043 /* WikiGameJPTests-WikiGameJPMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

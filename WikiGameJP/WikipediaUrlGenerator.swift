@@ -3,6 +3,7 @@ import Foundation
 protocol WikipediaUrlGenerator {
     func generateGetTitleUrl() -> String
     func generateGetPageInfoUrl(title: String) -> String
+    func generateGetTitleInfoUrl(startTitle: String, goalTitle: String) -> String
 }
 
 class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
@@ -24,6 +25,18 @@ class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
         url.append(query)
         url.append(title.urlEncoded)
         url.append("&redirects")
+        
+        return url
+    }
+    
+    func generateGetTitleInfoUrl(startTitle: String, goalTitle: String) -> String {
+        let query = "?action=query&format=json&titles="
+        
+        var url = basePath
+        url.append(query)
+        url.append(startTitle.urlEncoded)
+        url.append("|")
+        url.append(goalTitle.urlEncoded)
         
         return url
     }

@@ -49,22 +49,6 @@ class MainViewController: UIViewController {
         styleSubviews()
     }
     
-    private func getTitle() {
-        wikipediaRepository.getTitles()
-            .onSuccess(futureExecuteContext) { [weak self] result in
-                guard let weakSelf = self else {
-                    return
-                }
-                
-                let resultTitles = result.query.random
-                weakSelf.startLabel.text = resultTitles[0].title
-                weakSelf.goalLabel.text = resultTitles[1].title
-            }
-            .onFailure(callback: { error in
-                print("\(error.localizedDescription)")
-            })
-    }
-    
     private func addSubviews() {
         view.addSubview(startLabel)
         view.addSubview(startSubLabel)
@@ -230,6 +214,56 @@ class MainViewController: UIViewController {
     }
     
     @objc func tappedGameStartButton() {
+        getTitleInfo()
+    }
+    
+    private func getTitle() {
+        wikipediaRepository.getTitles()
+            .onSuccess(futureExecuteContext) { [weak self] result in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                let resultTitles = result.query.random
+                weakSelf.startLabel.text = resultTitles[0].title
+                weakSelf.goalLabel.text = resultTitles[1].title
+            }
+            .onFailure(callback: { error in
+                print("\(error.localizedDescription)")
+            })
+    }
+    
+    private func getTitleInfo() {
+        guard let startTitle = startLabel.text,
+              let goalTitle = goalLabel.text else {
+                  return
+              }
+        
+        wikipediaRepository.getTitleInfo(startTitle: startTitle, goalTitle: goalTitle)
+            .onSuccess(futureExecuteContext) { [weak self] result in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                var isExistTitles = true
+                result.query.pages.forEach {page in
+                    if (page.value.missing?.isEmpty ?? false) {
+                        isExistTitles = false
+                    }
+                }
+                
+                if isExistTitles {
+                    weakSelf.transitionGameView()
+                } else {
+                    weakSelf.showErrorModal()
+                }
+            }
+            .onFailure(callback: { error in
+                print("\(error.localizedDescription)")
+            })
+    }
+    
+    private func transitionGameView() {
         if let nc = navigationController,
            let titleStart = startLabel.text,
            let titleGoal = goalLabel.text
@@ -242,5 +276,13 @@ class MainViewController: UIViewController {
                 )
                 , on: nc)
         }
+    }
+    
+    private func showErrorModal() {
+        let dialog = UIAlertController(title: "エラー", message: "存在しないタイトルが入力されています", preferredStyle: .alert)
+        
+        dialog.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        router.present(viewController: dialog, fromViewController: self , animated: true, completion: nil)
     }
 }

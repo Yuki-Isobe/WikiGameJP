@@ -23,13 +23,15 @@ class WikipediaPageInfoQueryFactory {
 
 class WikipediaPageInfoFactory {
     static func create(
-        pageid: Int = -1,
+        pageid: Int? = -1,
         title: String = "",
-        revisions: [WikipediaPageInfoRevision] = []
+        missing: String? = nil,
+        revisions: [WikipediaPageInfoRevision]? = nil
     ) -> WikipediaPageInfo {
         WikipediaPageInfo(
             pageid: pageid,
             title: title,
+            missing: missing,
             revisions: revisions
         )
     }

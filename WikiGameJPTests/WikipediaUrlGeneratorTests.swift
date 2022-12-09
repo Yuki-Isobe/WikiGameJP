@@ -26,4 +26,14 @@ class WikipediaUrlGeneratorTests: XCTestCase {
         
         expect(actual).to(equal(expectUrl))
     }
+    
+    func test_generateGetTitleInfoUrl() {
+        let startTitle = "fake-start-title"
+        let goalTitle = "fake-goal-title"
+        
+        let actual = subject.generateGetTitleInfoUrl(startTitle: startTitle, goalTitle: goalTitle)
+        let expectUrl = "https://ja.wikipedia.org/w/api.php?action=query&format=json&titles=fake-start-title|fake-goal-title"
+        
+        expect(actual).to(equal(expectUrl))
+    }
 }

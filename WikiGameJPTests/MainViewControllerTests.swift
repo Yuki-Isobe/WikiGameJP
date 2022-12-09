@@ -98,7 +98,8 @@ class MainViewControllerTests: XCTestCase {
     }
     
     func test_tapGameStartButton() {
-        let startTitle = "fake-start-title"
+        let startTitle = "fake-title-1"
+        let goalTitle = "fake-title-2"
         let wikipediaTitleResponce = WikipediaTitleResponseFactory.create(
             query: WikipediaTitleQueryFactory.create(
                 random: [
@@ -106,7 +107,7 @@ class MainViewControllerTests: XCTestCase {
                         title: startTitle
                     ),
                     WikipediaTitleFactory.create(
-                        title: "fake-title-2"
+                        title: goalTitle
                     )
                 ]
             )
@@ -116,19 +117,91 @@ class MainViewControllerTests: XCTestCase {
             Future(value: wikipediaTitleResponce)
         )
         
+        let wikipediaTitlesInfoResponce = WikipediaPageInfoResponseFactory.create(
+            query: WikipediaPageInfoQueryFactory.create(
+                pages: [
+                    "1000000": WikipediaPageInfoFactory.create(
+                        pageid: 1000000,
+                        title: "fake-title-1"),
+                    "1000001":WikipediaPageInfoFactory.create(
+                        pageid: 1000001,
+                        title: "fake-title-2")
+                ]
+            )
+        )
+        
+        given(mockWikipediaRepository.getTitleInfo(startTitle: startTitle, goalTitle: goalTitle)).willReturn(
+            Future(value: wikipediaTitlesInfoResponce)
+        )
+        
         _ = subject.view
         
         let startLabel = subject.view.findLabel(withId: R.id.MainView_startTitle.rawValue)
         let goalLabel = subject.view.findLabel(withId: R.id.MainView_goalTitle.rawValue)
         expect(startLabel?.text).toEventually(equal(startTitle))
-        expect(goalLabel?.text).to(equal("fake-title-2"))
-        
+        expect(goalLabel?.text).to(equal(goalTitle))
+
         
         let gameStartButton = subject.view.findButton(withId: R.id.MainView_gameStartButton.rawValue)
         
         gameStartButton?.tap()
         subject.view.layoutIfNeeded()
 
-        expect(self.routerSpy.pushViewController_args.viewController).to(beAKindOf(WikipediaGameViewController.self))
+        expect(self.routerSpy.pushViewController_args.viewController).toEventually(beAKindOf(WikipediaGameViewController.self))
     }
+    
+    
+    func test_tapGameStartButton_not_transition_when_title_is_not_exist() {
+        let startTitle = "fake-title-1"
+        let goalTitle = "fake-title-2"
+        let wikipediaTitleResponce = WikipediaTitleResponseFactory.create(
+            query: WikipediaTitleQueryFactory.create(
+                random: [
+                    WikipediaTitleFactory.create(
+                        title: startTitle
+                    ),
+                    WikipediaTitleFactory.create(
+                        title: goalTitle
+                    )
+                ]
+            )
+        )
+        
+        given(mockWikipediaRepository.getTitles()).willReturn(
+            Future(value: wikipediaTitleResponce)
+        )
+        
+        let wikipediaTitlesInfoResponce = WikipediaPageInfoResponseFactory.create(
+            query: WikipediaPageInfoQueryFactory.create(
+                pages: [
+                    "1000000": WikipediaPageInfoFactory.create(
+                        pageid: 1000000,
+                        title: "fake-title-1"),
+                    "-1":WikipediaPageInfoFactory.create(
+                        title: "fake-title-2",
+                        missing: "")
+                ]
+            )
+        )
+        
+        given(mockWikipediaRepository.getTitleInfo(startTitle: startTitle, goalTitle: goalTitle)).willReturn(
+            Future(value: wikipediaTitlesInfoResponce)
+        )
+        
+        _ = subject.view
+        
+        let startLabel = subject.view.findLabel(withId: R.id.MainView_startTitle.rawValue)
+        let goalLabel = subject.view.findLabel(withId: R.id.MainView_goalTitle.rawValue)
+        expect(startLabel?.text).toEventually(equal(startTitle))
+        expect(goalLabel?.text).to(equal(goalTitle))
+
+        
+        let gameStartButton = subject.view.findButton(withId: R.id.MainView_gameStartButton.rawValue)
+        
+        gameStartButton?.tap()
+        subject.view.layoutIfNeeded()
+        
+        expect(self.routerSpy.present_args.viewController).toEventually(beAKindOf(UIAlertController.self))
+    }
+
 }

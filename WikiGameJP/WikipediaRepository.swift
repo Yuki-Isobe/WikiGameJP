@@ -4,6 +4,7 @@ import Foundation
 protocol WikipediaRepository {
     func getTitles() -> Future<WikipediaTitleResponse, AppError>
     func getPageInfo(title: String) -> Future<WikipediaPageInfoResponse, AppError>
+    func getTitleInfo(startTitle: String, goalTitle: String) -> Future<WikipediaPageInfoResponse, AppError>
 }
 
 class WikipediaRepositoryImpl: WikipediaRepository {
@@ -28,6 +29,15 @@ class WikipediaRepositoryImpl: WikipediaRepository {
     
     func getPageInfo(title: String) -> Future<WikipediaPageInfoResponse, AppError> {
         let url = urlGenerator.generateGetPageInfoUrl(title: title)
+        let result = http.get(path: url).flatMap { response in
+            self.parse(data: response, WikipediaPageInfoResponse.self)
+        }
+        
+        return result
+    }
+    
+    func getTitleInfo(startTitle: String, goalTitle: String) -> Future<WikipediaPageInfoResponse, AppError> {
+        let url = urlGenerator.generateGetTitleInfoUrl(startTitle: startTitle, goalTitle: goalTitle)
         let result = http.get(path: url).flatMap { response in
             self.parse(data: response, WikipediaPageInfoResponse.self)
         }

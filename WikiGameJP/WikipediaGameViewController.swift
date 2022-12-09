@@ -196,7 +196,7 @@ class WikipediaGameViewController: UIViewController {
                 }
                 let page = result.query.pages.first!
                 let title = page.value.title
-                let content = page.value.revisions.first!.content
+                let content = page.value.revisions!.first!.content
                 weakSelf.webView.loadHTMLString(content, baseURL: nil)
                 
                 weakSelf.currentLabel.text = title
