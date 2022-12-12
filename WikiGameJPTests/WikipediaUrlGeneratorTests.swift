@@ -32,7 +32,7 @@ class WikipediaUrlGeneratorTests: XCTestCase {
         let goalTitle = "fake-goal-title"
         
         let actual = subject.generateGetTitleInfoUrl(startTitle: startTitle, goalTitle: goalTitle)
-        let expectUrl = "https://ja.wikipedia.org/w/api.php?action=query&format=json&titles=fake-start-title|fake-goal-title"
+        let expectUrl = "https://ja.wikipedia.org/w/api.php?action=query&format=json&titles=fake-start-title%7Cfake-goal-title"
         
         expect(actual).to(equal(expectUrl))
     }

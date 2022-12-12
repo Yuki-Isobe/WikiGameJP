@@ -35,7 +35,7 @@ class WikipediaUrlGeneratorImpl: WikipediaUrlGenerator {
         var url = basePath
         url.append(query)
         url.append(startTitle.urlEncoded)
-        url.append("|")
+        url.append("%7C")
         url.append(goalTitle.urlEncoded)
         
         return url
