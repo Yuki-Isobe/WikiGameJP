@@ -253,7 +253,7 @@ extension WikipediaGameViewController: WKNavigationDelegate {
             
             let replacedTitle = decodedTitle.replacingOccurrences(of: "_", with: " ")
 
-            if replacedTitle == goalTitle {
+            if replacedTitle == goalTitle || decodedTitle == goalTitle {
                 if let nc = navigationController
                 {
                     router.pushViewController(

@@ -21,6 +21,8 @@ class MainViewController: UIViewController {
     
     private let gameStartButton = UIButton()
     
+    private let indicator = UIActivityIndicatorView()
+    
     init(
         router: Router,
         wikipediaRepository: WikipediaRepository = WikipediaRepositoryImpl(),
@@ -60,6 +62,7 @@ class MainViewController: UIViewController {
         view.addSubview(titleReloadButton)
         
         view.addSubview(gameStartButton)
+        view.addSubview(indicator)
     }
     
     private func configSubviews() {
@@ -136,6 +139,11 @@ class MainViewController: UIViewController {
         gameStartButton.constrainXCenter(to: .CenterXAnchor, of: view)
         gameStartButton.constrainWidth(constant: 175)
         gameStartButton.constrainHeight(constant: 75)
+        
+        indicator.constrainTop(to: .Top, of: view.safeAreaLayoutGuide)
+        indicator.constrainBottom(to: .Bottom, of: view)
+        indicator.constrainRight(to: .Right, of: view)
+        indicator.constrainLeft(to: .Left, of: view)
     }
     
     private func styleSubviews() {
@@ -175,6 +183,8 @@ class MainViewController: UIViewController {
         gameStartButton.titleLabel?.font = buttonFont
         gameStartButton.backgroundColor = primary
         gameStartButton.setTitleColor(secondaryBase, for: .normal)
+        
+        
     }
     
     @objc func tappedTitleEditButton() {
@@ -218,6 +228,7 @@ class MainViewController: UIViewController {
     }
     
     private func getTitle() {
+        indicator.startAnimating()
         wikipediaRepository.getTitles()
             .onSuccess(futureExecuteContext) { [weak self] result in
                 guard let weakSelf = self else {
@@ -231,6 +242,13 @@ class MainViewController: UIViewController {
             .onFailure(callback: { error in
                 print("\(error.localizedDescription)")
             })
+            .onComplete(futureExecuteContext) { [weak self] _ in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                weakSelf.indicator.stopAnimating()
+            }
     }
     
     private func getTitleInfo() {
@@ -238,7 +256,7 @@ class MainViewController: UIViewController {
               let goalTitle = goalLabel.text else {
                   return
               }
-        
+        indicator.startAnimating()
         wikipediaRepository.getTitleInfo(startTitle: startTitle, goalTitle: goalTitle)
             .onSuccess(futureExecuteContext) { [weak self] result in
                 guard let weakSelf = self else {
@@ -261,6 +279,13 @@ class MainViewController: UIViewController {
             .onFailure(callback: { error in
                 print("\(error.localizedDescription)")
             })
+            .onComplete(futureExecuteContext) { [weak self] _ in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                weakSelf.indicator.stopAnimating()
+            }
     }
     
     private func transitionGameView() {
@@ -279,7 +304,7 @@ class MainViewController: UIViewController {
     }
     
     private func showErrorModal() {
-        let dialog = UIAlertController(title: "エラー", message: "存在しないタイトルが入力されています", preferredStyle: .alert)
+        let dialog = UIAlertController(title: "エラー", message: "入力したタイトルは存在しません。", preferredStyle: .alert)
         
         dialog.addAction(UIAlertAction(title: "OK", style: .default))
         
